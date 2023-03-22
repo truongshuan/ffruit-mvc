@@ -9,27 +9,27 @@
     <!-- title -->
     <title>FFruit</title>
     <!-- favicon -->
-    <link rel="shortcut icon" type="image/png" href="public/assets/client/img/favicon-v.png">
+    <link rel="shortcut icon" type="image/png" href="../public/assets/client/img/favicon-v.png">
     <!-- google font -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
     <!-- fontawesome -->
-    <link rel="stylesheet" href="public/assets/client/css/all.min.css">
+    <link rel="stylesheet" href="../public/assets/client/css/all.min.css">
     <!-- bootstrap -->
-    <link rel="stylesheet" href="public/assets/client/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../public/assets/client/bootstrap/css/bootstrap.min.css">
     <!-- owl carousel -->
-    <link rel="stylesheet" href="public/assets/client/css/owl.carousel.css">
+    <link rel="stylesheet" href="../public/assets/client/css/owl.carousel.css">
     <!-- magnific popup -->
-    <link rel="stylesheet" href="public/assets/client/css/magnific-popup.css">
+    <link rel="stylesheet" href="../public/assets/client/css/magnific-popup.css">
     <!-- animate css -->
-    <link rel="stylesheet" href="public/assets/client/css/animate.css">
+    <link rel="stylesheet" href="../public/assets/client/css/animate.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
     <!-- mean menu css -->
-    <link rel="stylesheet" href="public/assets/client/css/meanmenu.min.css">
+    <link rel="stylesheet" href="../public/assets/client/css/meanmenu.min.css">
     <!-- main style -->
-    <link rel="stylesheet" href="public/assets/client/css/main.css">
+    <link rel="stylesheet" href="../public/assets/client/css/main.css">
     <!-- responsive -->
-    <link rel="stylesheet" href="public/assets/client/css/responsive.css">
+    <link rel="stylesheet" href="../public/assets/client/css/responsive.css">
 
 </head>
 
@@ -99,8 +99,10 @@
                                 </li>
                                 <li>
                                     <div class="header-icons">
-                                        <a class="shopping-cart" href="cart.php"><i class="fas fa-shopping-cart"></i></a>
-                                        <a class="mobile-hide search-bar-icon" href="#"><i class="fas fa-search"></i></a>
+                                        <a class="shopping-cart" href="cart.php"><i
+                                                class="fas fa-shopping-cart"></i></a>
+                                        <a class="mobile-hide search-bar-icon" href="#"><i
+                                                class="fas fa-search"></i></a>
                                     </div>
                                 </li>
                             </ul>

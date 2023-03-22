@@ -1,4 +1,4 @@
-<?php require 'header.php'; ?>
+<?php require 'page/header.php'; ?>
 <!-- breadcrumb-section -->
 <div class="breadcrumb-section breadcrumb-bg">
     <div class="container">
@@ -31,4 +31,4 @@
     </div>
 </div>
 <!-- end error section -->
-<?php require 'footer.php' ?>
+<?php require 'page/footer.php' ?>

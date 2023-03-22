@@ -11,19 +11,19 @@
             <div class="col-lg-12">
                 <div class="logo-carousel-inner">
                     <div class="single-logo-item">
-                        <img src="public/assets/client/img/company-logos/FPT-Retail-Ngang.png" alt="">
+                        <img src="../public/assets/client/img/company-logos/FPT-Retail-Ngang.png" alt="">
                     </div>
                     <div class="single-logo-item">
-                        <img src="public/assets/client/img/company-logos/fpt-shop.png" alt="">
+                        <img src="../public/assets/client/img/company-logos/fpt-shop.png" alt="">
                     </div>
                     <div class="single-logo-item">
-                        <img src="public/assets/client/img/company-logos/FPT_Education_logo.svg.png" alt="">
+                        <img src="../public/assets/client/img/company-logos/FPT_Education_logo.svg.png" alt="">
                     </div>
                     <div class=" single-logo-item">
-                        <img src="public/assets/client/img/company-logos/123.png" alt="">
+                        <img src="../public/assets/client/img/company-logos/123.png" alt="">
                     </div>
                     <div class="single-logo-item">
-                        <img src="public/assets/client/img/company-logos/FPT_Polytechnic.png" alt="">
+                        <img src="../public/assets/client/img/company-logos/FPT_Polytechnic.png" alt="">
                     </div>
                 </div>
             </div>
@@ -107,26 +107,26 @@
 <!-- end copyright -->
 
 <!-- jquery -->
-<script src="public/assets/client/js/jquery-1.11.3.min.js"></script>
+<script src="../public/assets/client/js/jquery-1.11.3.min.js"></script>
 <!-- bootstrap -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.0.4/popper.js"></script>
-<script src="public/assets/client/bootstrap/js/bootstrap.min.js"></script>
+<script src="../public/assets/client/bootstrap/js/bootstrap.min.js"></script>
 <!-- count down -->
-<script src="public/assets/client/js/jquery.countdown.js"></script>
+<script src="../public/assets/client/js/jquery.countdown.js"></script>
 <!-- isotope -->
-<script src="public/assets/client/js/jquery.isotope-3.0.6.min.js"></script>
+<script src="../public/assets/client/js/jquery.isotope-3.0.6.min.js"></script>
 <!-- waypoints -->
-<script src="public/assets/client/js/waypoints.js"></script>
+<script src="../public/assets/client/js/waypoints.js"></script>
 <!-- owl carousel -->
-<script src="public/assets/client/js/owl.carousel.min.js"></script>
+<script src="../public/assets/client/js/owl.carousel.min.js"></script>
 <!-- magnific popup -->
-<script src="public/assets/client/js/jquery.magnific-popup.min.js"></script>
+<script src="../public/assets/client/js/jquery.magnific-popup.min.js"></script>
 <!-- mean menu -->
-<script src="public/assets/client/js/jquery.meanmenu.min.js"></script>
+<script src="../public/assets/client/js/jquery.meanmenu.min.js"></script>
 <!-- sticker js -->
-<script src="public/assets/client/js/sticker.js"></script>
+<script src="../public/assets/client/js/sticker.js"></script>
 <!-- main js -->
-<script src="public/assets/client/js/main.js"></script>
+<script src="../public/assets/client/js/main.js"></script>
 
 </body>
 

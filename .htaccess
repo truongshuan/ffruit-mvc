@@ -1,0 +1,23 @@
+RewriteEngine On
+
+# Chặn quyền truy cập file .htaccess
+<Files .htaccess>
+Order Allow,Deny
+Deny from all
+</Files>
+
+# Protect log.txt
+<Files ./inscription/log.txt>
+Order Allow,Deny
+Deny from all
+</Files>
+
+# Chặn quyền truy cập Folder từ URL
+Options All -Indexes
+
+
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-l
+
+RewriteRule ^(.+)$ index.php?url=$1 [QSA,L]

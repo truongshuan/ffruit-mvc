@@ -1,9 +1,9 @@
 <?php return array(
     'root' => array(
         'name' => 'asmin/xuanptpc04031_web17301_asm',
-        'pretty_version' => '1.0.0+no-version-set',
-        'version' => '1.0.0.0',
-        'reference' => NULL,
+        'pretty_version' => 'dev-master',
+        'version' => 'dev-master',
+        'reference' => 'ed6ff3ad3c4baed2072ca5fb1a7c858786224734',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -11,9 +11,9 @@
     ),
     'versions' => array(
         'asmin/xuanptpc04031_web17301_asm' => array(
-            'pretty_version' => '1.0.0+no-version-set',
-            'version' => '1.0.0.0',
-            'reference' => NULL,
+            'pretty_version' => 'dev-master',
+            'version' => 'dev-master',
+            'reference' => 'ed6ff3ad3c4baed2072ca5fb1a7c858786224734',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
