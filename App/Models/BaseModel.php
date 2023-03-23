@@ -11,10 +11,10 @@ use App\App\Interfaces\Database;
 
 class BaseModel
 {
-    private $_server = 'localhost';
-    private $_dbname = 'mvc_ffruit';
-    private $_user = 'root';
-    private $_pass = 'root';
+    private $_server = HOST;
+    private $_dbname = DB_NAME;
+    private $_user = DB_USER;
+    private $_pass = DB_PASS;
     private $_connection;
 
     public $pdo;

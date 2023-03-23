@@ -6,8 +6,14 @@ ini_set('display_startup_errors', '1');
 error_reporting(E_ALL);
 
 
-require_once 'Config/config.php';
+
 require_once 'vendor/autoload.php';
+
+
+$dotenv = Dotenv\Dotenv::createUnsafeImmutable(__DIR__);
+$dotenv->safeLoad();
+
+require_once 'Config/config.php';
 require_once 'Config/App.php';
 
 
@@ -17,5 +23,9 @@ use App\App\Core\Session;
 new Routes();
 
 
-$dotenv = Dotenv\Dotenv::createUnsafeImmutable(__DIR__);
-$dotenv->safeLoad();
+// var_dump($_ENV);
+var_dump(HOST);
+var_dump(DB_NAME);
+// var_dump(HOST);
+// define('HOSTT', getenv('DB_HOST'));
+// var_dump(HOSTT);
