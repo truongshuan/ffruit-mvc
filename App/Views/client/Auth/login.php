@@ -1,3 +1,10 @@
+<?php
+if (isset($_COOKIE['emailUser']) && isset($_COOKIE['passwordUser'])) {
+    $emailVal = $_COOKIE['emailUser'];
+    $passwordVal = $_COOKIE['passwordUser'];
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -36,7 +43,7 @@
                             <form action="<?= ROOT_URL ?>UserController/action" method="POST" class="needs-validation">
                                 <div class="mb-3">
                                     <label class="mb-2 text-muted" for="email">E-Mail</label>
-                                    <input id="email" name="email" type="email" class="form-control" name="email" value="" required>
+                                    <input id="email" name="email" value="<?= isset($emailVal) ? $emailVal : '' ?>" type="email" class="form-control" name="email" value="" required>
                                 </div>
                                 <div class="mb-3">
                                     <div class="mb-2 w-100">
@@ -45,7 +52,7 @@
                                             Quên mật khẩu?
                                         </a>
                                     </div>
-                                    <input id="password" type="password" class="form-control" name="password" required>
+                                    <input id="password" value="<?= isset($passwordVal) ? $passwordVal : '' ?>" type="password" class="form-control" name="password" required>
                                 </div>
                                 <div class="d-flex align-items-center">
                                     <div class="form-check">

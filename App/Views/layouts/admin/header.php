@@ -53,7 +53,7 @@
                         </div>
                     </div>
                     <div class="ms-3">
-                        <h6 class="mb-0"><?php echo $_SESSION['username']; ?></h6>
+                        <h6 class="mb-0"><?php echo $_SESSION['username_admin']; ?></h6>
                         <span>Admin</span>
                     </div>
                 </div>
@@ -174,7 +174,7 @@
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
                             <img class="rounded-circle me-lg-2" src="<?= ROOT_URL ?>public/assets/admin/img/user.jpg" alt="" style="width: 40px; height: 40px;">
-                            <span class="d-none d-lg-inline-flex"><?php echo $_SESSION['username'] ?></span>
+                            <span class="d-none d-lg-inline-flex"><?php echo $_SESSION['username_admin'] ?></span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
                             <a href="#" class="dropdown-item">My Profile</a>

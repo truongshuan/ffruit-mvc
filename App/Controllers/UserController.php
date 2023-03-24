@@ -47,6 +47,11 @@ class UserController extends BaseController
                         Session::set('username_user', $check[0]['username']);
                         Session::set('email_user', $check[0]['email']);
                         Session::set('password_user', $check[0]['password']);
+
+                        if (isset($_POST['remember'])) {
+                            setcookie('emailUser', $email, time() + 60 * 60);
+                            setcookie('passwordUser', $password, time() + 60 * 60);
+                        }
                         header("Location:" . ROOT_URL);
                     } else {
                         Session::init();

@@ -62,10 +62,9 @@ class AdminController extends BaseController
                     // Set session lưu dữ liệu
                     Session::init();
                     Session::set('login', true);
-                    Session::set('username', $data_Auth[0]['username']);
-                    Session::set('fullname', $data_Auth[0]['fullname']);
+                    Session::set('username_admin', $data_Auth[0]['username']);
+                    Session::set('fullname_admin', $data_Auth[0]['fullname']);
                     Session::set('id_admin', $data_Auth[0]['id']);
-
                     // Check ghi nhớ mật khẩu
                     if (isset($_POST['remember'])) {
                         setcookie('emailAdmin', $email, time() + 20);
@@ -87,7 +86,10 @@ class AdminController extends BaseController
     public function logout()
     {
         Session::init();
-        Session::detroy();
+        unset($_SESSION['login']);
+        unset($_SESSION['username_admin']);
+        unset($_SESSION['fullname_admin']);
+        unset($_SESSION['id_admin']);
         header("Location:" . ROOT_URL . "AdminController/Login");
     }
 }
