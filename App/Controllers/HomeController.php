@@ -19,10 +19,10 @@ class HomeController extends BaseController
     function homePage()
     {
         Session::init();
-        $this->load->render('layouts/client/header');
-        $this->load->render('layouts/client/slider');
-        $this->load->render('client/index');
-        $this->load->render('layouts/client/footer');
+        // $this->load->render('layouts/client/header');
+        // $this->load->render('layouts/client/slider');
+        $this->load->render('client/Auth/otp');
+        // $this->load->render('layouts/client/footer');
     }
     function Error()
     {

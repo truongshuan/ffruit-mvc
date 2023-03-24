@@ -18,7 +18,7 @@
                         <textarea name="content" id="desc" cols="30" rows="7" placeholder="Nội dung bài viết" class="form-control"><?= $data['post'][0]['content'] ?></textarea>
                     </div>
                     <div class="mb-3">
-                        <button type="submit" name="edit_post" class="btn btn-primary">Thêm</button>
+                        <button type="submit" name="edit_post" class="btn btn-primary">Sửa</button>
                     </div>
                 </form>
             </div>

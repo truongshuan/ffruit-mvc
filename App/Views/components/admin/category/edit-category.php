@@ -4,17 +4,20 @@
         <div class="col-12">
             <div class="bg-light rounded h-100 p-4">
                 <h6 class="mb-4">Sửa</h6>
-                <form action="<?php echo ROOT_URL . 'CategoryController/edit/' . $data['category_id'][0]['id'] ?>" method="POST">
+                <form action="<?php echo ROOT_URL . 'CategoryController/edit/' . $data['category_id'][0]['id'] ?>"
+                    method="POST">
                     <div class="mb-3">
                         <label for="name" class="form-label">Tiêu đề</label>
-                        <input type=" text" value="<?= @$data['category_id'][0]['title'] ?>" name="title" id="name" class="form-control" placeholder="Nhập mô tả..." required>
+                        <input type=" text" value="<?= @$data['category_id'][0]['title'] ?>" name="title" id="name"
+                            class="form-control" placeholder="Nhập mô tả..." required>
                     </div>
                     <div class="mb-3">
                         <label for="desc" class="form-label">Mô tả</label>
-                        <textarea name="desc" id="desc" cols="30" rows="5" placeholder="Nhập tiêu đề loại.." class="form-control"><?= @$data['category_id'][0]['description'] ?></textarea>
+                        <textarea name="desc" id="desc" cols="30" rows="5" placeholder="Nhập tiêu đề loại.."
+                            class="form-control"><?= @$data['category_id'][0]['description'] ?></textarea>
                     </div>
                     <div class="mb-3">
-                        <button type="submit" name="edit_category" class="btn btn-primary">Thêm</button>
+                        <button type="submit" name="edit_category" class="btn btn-primary">Sửa</button>
                     </div>
                 </form>
             </div>

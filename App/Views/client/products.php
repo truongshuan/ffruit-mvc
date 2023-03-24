@@ -34,7 +34,7 @@
             <div class="col-lg-4 col-md-6 text-center strawberry">
                 <div class="single-product-item">
                     <div class="product-image">
-                        <a href="single-product.html"><img src="assets/img/products/product-img-1.jpg" alt=""></a>
+                        <a href="single-product.html"><img src="<?= ROOT_URL ?>public/assets/client/img/products/product-img-1.jpg" alt=""></a>
                     </div>
                     <h3>Strawberry</h3>
                     <p class="product-price"><span>Per Kg</span> 85$ </p>
@@ -49,7 +49,7 @@
             <div class="col-lg-4 col-md-6 text-center berry">
                 <div class="single-product-item">
                     <div class="product-image">
-                        <a href="single-product.html"><img src="assets/img/products/product-img-2.jpg" alt=""></a>
+                        <a href="single-product.html"><img src="<?= ROOT_URL ?>public/assets/client/img/products/product-img-2.jpg" alt=""></a>
                     </div>
                     <h3>Berry</h3>
                     <p class="product-price"><span>Per Kg</span> 70$ </p>
@@ -64,7 +64,7 @@
             <div class="col-lg-4 col-md-6 text-center lemon">
                 <div class="single-product-item">
                     <div class="product-image">
-                        <a href="single-product.html"><img src="assets/img/products/product-img-3.jpg" alt=""></a>
+                        <a href="single-product.html"><img src="<?= ROOT_URL ?>public/assets/client/img/products/product-img-3.jpg" alt=""></a>
                     </div>
                     <h3>Lemon</h3>
                     <p class="product-price"><span>Per Kg</span> 35$ </p>
@@ -79,7 +79,7 @@
             <div class="col-lg-4 col-md-6 text-center">
                 <div class="single-product-item">
                     <div class="product-image">
-                        <a href="single-product.html"><img src="assets/img/products/product-img-4.jpg" alt=""></a>
+                        <a href="single-product.html"><img src="<?= ROOT_URL ?>public/assets/client/img/products/product-img-4.jpg" alt=""></a>
                     </div>
                     <h3>Avocado</h3>
                     <p class="product-price"><span>Per Kg</span> 50$ </p>
@@ -94,7 +94,7 @@
             <div class="col-lg-4 col-md-6 text-center">
                 <div class="single-product-item">
                     <div class="product-image">
-                        <a href="single-product.html"><img src="assets/img/products/product-img-5.jpg" alt=""></a>
+                        <a href="single-product.html"><img src="<?= ROOT_URL ?>public/assets/client/img/products/product-img-5.jpg" alt=""></a>
                     </div>
                     <h3>Green Apple</h3>
                     <p class="product-price"><span>Per Kg</span> 45$ </p>
@@ -109,7 +109,7 @@
             <div class="col-lg-4 col-md-6 text-center strawberry">
                 <div class="single-product-item">
                     <div class="product-image">
-                        <a href="single-product.html"><img src="assets/img/products/product-img-6.jpg" alt=""></a>
+                        <a href="single-product.html"><img src="<?= ROOT_URL ?>public/assets/client/img/products/product-img-6.jpg" alt=""></a>
                     </div>
                     <h3>Strawberry</h3>
                     <p class="product-price"><span>Per Kg</span> 80$ </p>
