@@ -1,7 +1,16 @@
 <?php
 
-use App\App\Models\BaseModel;
 
+/**
+ * Quy tắc đặt tên chuẩn : 
+ * Tên file và tên Class phải là danh từ số ít (User,Category...) và viết hoa chữ cái đầu
+ * Tên phương thức phải là dạng danh từ số nhiều hoặc số ít (Không viết hoa)
+ * Các thuộc tính trong Model phải ở dạng snack_case
+ */
+
+namespace App\App\Models;
+
+use App\App\Models\BaseModel;
 
 
 class Category extends BaseModel
@@ -14,7 +23,7 @@ class Category extends BaseModel
         parent::__construct();
     }
 
-    public function getLists()
+    public function getAll()
     {
         return $this->readData($this->table,  ['id', 'title', 'description', 'created_at'], []);
     }
@@ -22,9 +31,18 @@ class Category extends BaseModel
     {
         return $this->readData($this->table, ['id', 'title', 'description', 'created_at'], ['id' => $id]);
     }
-    public function filterTitle($name)
+    public function filterByTitle($name)
     {
-        return $this->readData($this->table,  ['title'], ['title' => $name]);
+        $check = true;
+        $temp = $this->readData($this->table,  ['title'], ['title' => $name]);
+        if (!empty($temp[0]['title'])) {
+            if ($temp[0]['title'] == $name) {
+                $check = false;
+            }
+        } else {
+            $check = true;
+        }
+        return $check;
     }
 
     public function addCategory($title, $desc)

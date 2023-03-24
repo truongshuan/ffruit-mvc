@@ -1,4 +1,3 @@
-<?php include 'include/header.php' ?>
 <!-- Content Start -->
 <!-- Sale & Revenue Start -->
 <div class="container-fluid pt-4 px-4">
@@ -142,9 +141,3 @@
     </div>
 </div>
 <!-- Recent Sales End -->
-
-
-
-
-<!-- Content End -->
-<?php include 'include/footer.php' ?>

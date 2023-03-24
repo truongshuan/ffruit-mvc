@@ -1,3 +1,11 @@
+<?php
+
+if (isset($_COOKIE['emailAdmin']) && isset($_COOKIE['passwordAdmin'])) {
+    $emailVal = $_COOKIE['emailAdmin'];
+    $passwordVal = $_COOKIE['passwordAdmin'];
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -47,24 +55,33 @@
             <div class="row h-100 align-items-center justify-content-center" style="min-height: 100vh;">
                 <div class="col-12 col-sm-8 col-md-6 col-lg-5 col-xl-4">
                     <div class="bg-light rounded p-4 p-sm-5 my-4 mx-3">
-                        <form autocomplete="off" action="<?php echo ROOT_URL; ?>Admin/AuthLogin" method="post">
+                        <form autocomplete="off" action="<?php echo ROOT_URL; ?>AdminController/AuthLogin" method="post">
                             <div class="d-flex align-items-center justify-content-between mb-3">
-                                <a href="index.html" class="">
+                                <a href="<?php echo ROOT_URL; ?>AdminController/Page" class="">
                                     <h3 class="text-primary"><i class="fa fa-user me-2"></i>ADMIN</h3>
                                 </a>
                                 <h3>Đăng nhập</h3>
                             </div>
                             <div class="form-floating mb-3">
-                                <input type="email" name="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                                <?php if (isset($_SESSION['msg'])) :  ?>
+                                    <div class="alert alert-danger text-center">
+                                        <?php
+                                        echo $_SESSION['msg'];
+                                        ?>
+                                    </div>
+                                <?php endif; ?>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="email" name="email" value="<?= isset($emailVal) ? $emailVal : '' ?>" class="form-control" id="floatingInput" placeholder="name@example.com">
                                 <label for="floatingInput">Email</label>
                             </div>
                             <div class="form-floating mb-4">
-                                <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Password">
+                                <input type="password" name="password" value="<?= isset($passwordVal) ? $passwordVal : '' ?>" class="form-control" id="floatingPassword" placeholder="Password">
                                 <label for="floatingPassword">Mật khẩu</label>
                             </div>
                             <div class="d-flex align-items-center justify-content-between mb-4">
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                    <input type="checkbox" name="remember" class="form-check-input" id="exampleCheck1">
                                     <label class="form-check-label" for="exampleCheck1">Ghi nhớ</label>
                                 </div>
                                 <!-- <a href="">Quên mật khẩu</a> -->

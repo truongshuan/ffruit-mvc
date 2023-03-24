@@ -44,7 +44,7 @@ class Routes
         if (!isset($this->url[0])) {
             require_once $this->path . $this->nameController . '.php';
             $this->controller = new $this->nameController();
-            // $this->controller->index();
+            $this->controller->HomeController();
         } else {
             $this->nameController = $this->url[0];
             $file = $this->path . $this->nameController . '.php';

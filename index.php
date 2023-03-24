@@ -20,12 +20,5 @@ require_once 'Config/App.php';
 use App\App\Core\Routes;
 use App\App\Core\Session;
 
+
 new Routes();
-
-
-// var_dump($_ENV);
-var_dump(HOST);
-var_dump(DB_NAME);
-// var_dump(HOST);
-// define('HOSTT', getenv('DB_HOST'));
-// var_dump(HOSTT);

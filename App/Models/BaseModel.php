@@ -150,9 +150,9 @@ class BaseModel
     {
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute(array($email));
-
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
 
     public function createData($table, $data)
     {

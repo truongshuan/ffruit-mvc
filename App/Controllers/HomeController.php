@@ -3,12 +3,10 @@
 // namespace App\App\Controllers;
 
 use App\App\Controllers\BaseController;
-
+use App\App\Core\Session;
 
 class HomeController extends BaseController
 {
-
-
     function __construct()
     {
         $data = [];
@@ -20,10 +18,17 @@ class HomeController extends BaseController
     }
     function homePage()
     {
-        $this->load->render('home');
+        Session::init();
+        $this->load->render('layouts/client/header');
+        $this->load->render('layouts/client/slider');
+        $this->load->render('client/index');
+        $this->load->render('layouts/client/footer');
     }
     function Error()
     {
-        $this->load->render('404');
+        Session::init();
+        $this->load->render('layouts/client/header');
+        $this->load->render('client/404');
+        $this->load->render('layouts/client/footer');
     }
 }

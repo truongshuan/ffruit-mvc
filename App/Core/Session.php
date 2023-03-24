@@ -28,7 +28,7 @@ class Session
         self::init();
         if (self::get('login') == false) {
             self::detroy();
-            header("Location:" . ROOT_URL . "Admin/Login");
+            header("Location:" . ROOT_URL . "AdminController/Login");
         } else {
         }
     }
