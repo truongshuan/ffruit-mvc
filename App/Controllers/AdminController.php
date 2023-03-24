@@ -92,4 +92,9 @@ class AdminController extends BaseController
         unset($_SESSION['id_admin']);
         header("Location:" . ROOT_URL . "AdminController/Login");
     }
+
+    public function addAdmin()
+    {
+        return $this->_admin->addAuth('shuan@nitez', 'Pham Truong Xuan', 'admin@gmail.com', password_hash('admin', PASSWORD_BCRYPT), 0, 1);
+    }
 }

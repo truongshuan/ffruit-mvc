@@ -27,17 +27,17 @@ class Admin extends BaseModel
         $sql = "SELECT * FROM $table WHERE email=?";
         return $this->getAuth($sql, $email);
     }
-    // public function addAuth($username, $fullname, $email, $password, $code, $status)
-    // {
-    //     $data = [
-    //         'username' => $username,
-    //         'fullname' => $fullname,
-    //         'email' => $email,
-    //         'password' => $password,
-    //         'code' => $code,
-    //         'status' => 1
-    //     ];
+    public function addAuth($username, $fullname, $email, $password, $code, $status)
+    {
+        $data = [
+            'username' => $username,
+            'fullname' => $fullname,
+            'email' => $email,
+            'password' => $password,
+            'code' => $code,
+            'status' => 1
+        ];
 
-    //     return $this->createData($this->table, $data);
-    // }
+        return $this->createData($this->table, $data);
+    }
 }
