@@ -1,4 +1,7 @@
 <?php
+
+use App\App\Core\Session;
+
 if (isset($_COOKIE['emailUser']) && isset($_COOKIE['passwordUser'])) {
     $emailVal = $_COOKIE['emailUser'];
     $passwordVal = $_COOKIE['passwordUser'];
@@ -32,18 +35,19 @@ if (isset($_COOKIE['emailUser']) && isset($_COOKIE['passwordUser'])) {
                     </div>
                     <div class="card shadow-lg">
                         <div class="card-body p-5">
-                            <h1 class="fs-4 card-title fw-bold mb-4 text-center">Đăng nhập</h1>
-                            <?php if (isset($_SESSION['msg_login'])) :  ?>
+                            <h1 class="fs-4 card-title fw-bold  text-center">Đăng nhập</h1>
+                            <?php if (isset($_SESSION['error']['error_login'])) :  ?>
                                 <div class="alert alert-danger text-center">
-                                    <?php
-                                    echo $_SESSION['msg_login'];
-                                    ?>
+                                    <?= Session::getError('error_login') ?>
                                 </div>
                             <?php endif; ?>
                             <form action="<?= ROOT_URL ?>UserController/action" method="POST" class="needs-validation">
                                 <div class="mb-3">
                                     <label class="mb-2 text-muted" for="email">E-Mail</label>
-                                    <input id="email" name="email" value="<?= isset($emailVal) ? $emailVal : '' ?>" type="email" class="form-control" name="email" value="" required>
+                                    <input id="email" name="email" value="<?= isset($emailVal) ? $emailVal : '' ?>" type="text" class="form-control" name="email">
+                                    <samll class="text-danger">
+                                        <?= Session::getError('email') ?>
+                                    </samll>
                                 </div>
                                 <div class="mb-3">
                                     <div class="mb-2 w-100">
@@ -52,7 +56,10 @@ if (isset($_COOKIE['emailUser']) && isset($_COOKIE['passwordUser'])) {
                                             Quên mật khẩu?
                                         </a>
                                     </div>
-                                    <input id="password" value="<?= isset($passwordVal) ? $passwordVal : '' ?>" type="password" class="form-control" name="password" required>
+                                    <input id="password" value="<?= isset($passwordVal) ? $passwordVal : '' ?>" type="password" class="form-control" name="password">
+                                    <samll class="text-danger">
+                                        <?= Session::getError('password') ?>
+                                    </samll>
                                 </div>
                                 <div class="d-flex align-items-center">
                                     <div class="form-check">
@@ -77,14 +84,7 @@ if (isset($_COOKIE['emailUser']) && isset($_COOKIE['passwordUser'])) {
             </div>
         </div>
     </section>
-
     <script src="<?= ROOT_URL ?>public/assets/client/js/login.js"></script>
 </body>
 
 </html>
-<?php
-
-if (isset($_SESSION['msg_login'])) {
-    unset($_SESSION['msg_login']);
-}
-?>

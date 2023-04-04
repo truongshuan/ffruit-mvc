@@ -11,7 +11,6 @@ use App\App\Core\Session;
 
 class Email
 {
-
     private $mail;
     function __construct($email, $code, $content, $url)
     {
@@ -20,11 +19,8 @@ class Email
         $message = "Your verification code is $code";
         $sender = "xuanptpc04031@fpt.edu.vn";
         if ($this->mail) {
-            Session::init();
-            $_SESSION['sendMail'] = $content;
-            $_SESSION['emailUser'] = $email;
-            // $_SESSION['password'] = $password;
-            // concac
+            Session::setSuccess('sendMail', $content);
+            Session::setSuccess('emailUser', $email);
             $this->mail->IsSMTP(); // telling the class to use SMTP
             $this->mail->SMTPAuth = true; // enable SMTP authentication
             $this->mail->SMTPSecure = "ssl"; // sets the prefix to the servier
@@ -44,8 +40,7 @@ class Email
             }
             exit();
         } else {
-            Session::init();
-            Session::set('msg', 'Không thể gửi mã OTP!');
+            Session::setError('sendMail', 'Không thể gửi mã');
         }
     }
 }

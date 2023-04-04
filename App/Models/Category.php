@@ -29,7 +29,7 @@ class Category extends BaseModel
     }
     public function getById($id)
     {
-        return $this->readData($this->table, ['id', 'title', 'description', 'created_at'], ['id' => $id]);
+        return $this->getOne($this->table, ['id', 'title', 'description', 'created_at'], ['id' => $id]);
     }
     public function filterByTitle($name)
     {

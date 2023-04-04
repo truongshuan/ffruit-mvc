@@ -31,8 +31,18 @@
     <script src="<?= ROOT_URL ?>public/assets/admin/lib/tempusdominus/js/moment-timezone.min.js"></script>
     <script src="<?= ROOT_URL ?>public/assets/admin/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
 
+
     <!-- Template Javascript -->
+    <script src="<?= ROOT_URL ?>public/assets/admin/js/beautyToast.min.js"></script>
     <script src="<?= ROOT_URL ?>public/assets/admin/js/main.js"></script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/36.0.1/classic/ckeditor.js"></script>
+    <script>
+        ClassicEditor
+            .create(document.querySelector('#editor'))
+            .catch(error => {
+                console.error(error);
+            });
+    </script>
     </body>
 
     </html>

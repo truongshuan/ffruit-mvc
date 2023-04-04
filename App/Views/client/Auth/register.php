@@ -1,7 +1,8 @@
 <?php
-session_start();
-?>
 
+use App\App\Core\Session;
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,12 +12,11 @@ session_start();
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="description" content="This is a login page template based on Bootstrap 5">
     <title>FFruit - Đăng ký</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
     <style>
-    .a {
-        text-decoration: none;
-    }
+        .a {
+            text-decoration: none;
+        }
     </style>
 </head>
 
@@ -30,42 +30,51 @@ session_start();
                     </div>
                     <div class="card shadow-lg">
                         <div class="card-body p-3">
-                            <h1 class="fs-4 card-title fw-bold mb-4 text-center">Đăng ký</h1>
-                            <?php if (isset($_SESSION['error'])) :  ?>
-                            <div class="alert alert-danger text-center">
-                                <?php
-                                    echo $_SESSION['error'];
-                                    ?>
-                            </div>
+                            <h1 class="fs-4 card-title fw-bold  text-center">Đăng ký</h1>
+                            <?php if (isset($_SESSION['error']['error'])) : ?>
+                                <div class="alert alert-danger text-center">
+                                    <?= Session::getError('error') ?>
+                                </div>
                             <?php endif; ?>
-                            <form action="<?= ROOT_URL ?>RegisterController/actionRegister" method="POST"
-                                class="needs-validation">
+                            <form action="<?= ROOT_URL ?>RegisterController/actionRegister" method="POST" class="needs-validation">
                                 <div class="mb-1">
                                     <label class="mb-2 text-muted" for="email">E-Mail</label>
-                                    <input id="email" name="email" type="email" class="form-control" value="" required>
+                                    <input id="email" name="email" type="text" class="form-control">
+                                    <small class="text-danger">
+                                        <?= Session::getError('email') ?>
+                                    </small>
                                 </div>
                                 <div class="mb-1">
                                     <label class="mb-2 text-muted" for="username">Username</label>
-                                    <input id="username" name="username" type="text" class="form-control" value=""
-                                        required>
+                                    <input id="username" name="username" type="text" class="form-control">
+                                    <small class="text-danger">
+                                        <?= Session::getError('username') ?>
+                                    </small>
                                 </div>
                                 <div class="mb-1">
                                     <label class="mb-2 text-muted" for="fullname">Họ tên</label>
-                                    <input id="fullname" name="fullname" type="text" class="form-control" value=""
-                                        required>
+                                    <input id="fullname" name="fullname" type="text" class="form-control">
+                                    <small class="text-danger">
+                                        <?= Session::getError('fullname') ?>
+                                    </small>
                                 </div>
                                 <div class="mb-1">
                                     <div class="w-100">
                                         <label class="text-muted" for="password">Mật khẩu</label>
                                     </div>
-                                    <input id="password" type="password" class="form-control" name="password" required>
+                                    <input id="password" type="password" class="form-control" name="password">
+                                    <small class="text-danger">
+                                        <?= Session::getError('password') ?>
+                                    </small>
                                 </div>
                                 <div class="mb-1">
                                     <div class="w-100">
-                                        <label class="text-muted" for="password">Xác nhận mật khẩu</label>
+                                        <label class="text-muted" for="confirm">Xác nhận mật khẩu</label>
                                     </div>
-                                    <input id="password" type="password" class="form-control" name="password_confirm"
-                                        required>
+                                    <input id="confirm" type="password" class="form-control" name="confirm">
+                                    <small class="text-danger">
+                                        <?= Session::getError('confirm') ?>
+                                    </small>
                                 </div>
                                 <div class="text-center mt-3">
                                     <button type="submit" name="register" class="btn btn-primary">
@@ -76,8 +85,7 @@ session_start();
                         </div>
                         <div class="card-footer py-2 border-0">
                             <div class="text-center">
-                                Bạn đã có tài khoản <a href="<?= ROOT_URL ?>UserController/login"
-                                    class="text-primary a">Đăng nhập</a>
+                                Bạn đã có tài khoản <a href="<?= ROOT_URL ?>UserController/login" class="text-primary a">Đăng nhập</a>
                             </div>
                         </div>
                     </div>
@@ -85,13 +93,7 @@ session_start();
             </div>
         </div>
     </section>
-
-    <!-- <script src="<?= ROOT_URL ?>public/assets/client/js/login.js"></script> -->
 </body>
 
 </html>
-<?php
-if (isset($_SESSION['error'])) {
-    unset($_SESSION['error']);
-}
-?>
+1

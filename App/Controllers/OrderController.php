@@ -25,11 +25,13 @@ class OrderController extends BaseController
         $this->_order = new Order();
     }
 
+    /**
+     * @throws Exception
+     */
     public function list()
     {
         // Lấy dữ liệu
         $data = [];
-
         // Render data và view
         $this->load->render('layouts/admin/header');
         $this->load->render('components/admin/order/table-order', $data);

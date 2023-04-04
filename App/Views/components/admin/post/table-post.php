@@ -14,6 +14,7 @@
                                 <tr>
                                     <th scope="col">#</th>
                                     <th scope="col">Thumbnail</th>
+                                    <th scope="col">Chủ đề</th>
                                     <th scope="col">Tiều đề</th>
                                     <th scope="col">Thời gian</th>
                                     <th scope="col">Tác giả</th>
@@ -23,23 +24,29 @@
                             </thead>
                             <tbody>
                                 <?php foreach ($data['posts'] as $post) : ?>
-                                <tr>
-                                    <th scope="row"><?= @$post['id'] ?></th>
-                                    <td>
-                                        <img src="<?php echo ROOT_URL . 'public/upload/post/' . $post['thumbnail'] ?>"
-                                            alt="image" width="150px">
-                                    </td>
-                                    <th scope="row"><?= @$post['title'] ?></th>
-                                    <td><?= @$post['created_at'] ?></td>
-                                    <td><?= @$data['author'] ?></td>
-                                    <td><?= @$post['content'] ?></td>
-                                    <td>
-                                        <a href="<?= ROOT_URL . 'PostController/edit/' . @$post['id'] ?>"
-                                            class="btn btn-primary"><i class="fa fa-edit"></i></a>
-                                        <a href="<?= ROOT_URL . 'PostController/delete/' . @$post['id'] ?>"
-                                            class="btn btn-danger"><i class="fa fa-trash"></i></a>
-                                    </td>
-                                </tr>
+                                    <tr>
+                                        <th scope="row"><?= @$post['id'] ?></th>
+                                        <td>
+                                            <img src="<?= ROOT_URL . $post['thumbnail'] ?>" alt="image" width="150px">
+                                        </td>
+                                        <td>
+                                            <?php
+                                            foreach ($data['topic'] as $topic) {
+                                                if ($post['topic_id'] == $topic['id']) {
+                                                    echo $topic['name'];
+                                                }
+                                            }
+                                            ?>
+                                        </td>
+                                        <th scope="row"><?= @$post['title'] ?></th>
+                                        <td><?php echo date('d-m-Y', strtotime($post['created_at'])) ?></td>
+                                        <td><?= @$data['author'] ?></td>
+                                        <td><?= @$post['content'] ?></td>
+                                        <td>
+                                            <a href="<?= ROOT_URL . 'PostController/edit/' . @$post['id'] ?>" class="btn btn-primary"><i class="fa fa-edit"></i></a>
+                                            <a href="<?= ROOT_URL . 'PostController/delete/' . @$post['id'] ?>" class="btn btn-danger"><i class="fa fa-trash"></i></a>
+                                        </td>
+                                    </tr>
                                 <?php endforeach; ?>
                             </tbody>
                         </table>

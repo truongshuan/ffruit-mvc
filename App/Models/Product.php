@@ -17,33 +17,33 @@ class Product extends BaseModel
 
     public function getAll()
     {
-        return $this->readData($this->table, ['id', 'name', 'price', 'description', 'image', 'created_at', 'updated_at', 'id_category'], []);
+        return $this->readData($this->table, ['id', 'name', 'price', 'description', 'path_image', 'created_at', 'updated_at', 'id_category'], []);
     }
 
     public function getById($id)
     {
-        return $this->readData($this->table, ['id', 'name', 'price', 'description', 'image', 'created_at', 'updated_at', 'id_category'], ['id' => $id]);
+        return $this->selectOne($this->table, ['id', 'name', 'price', 'description', 'path_image', 'created_at', 'updated_at', 'id_category'], ['id' => $id]);
     }
 
-    public function addProduct($name, $price, $desc, $image, $id_category)
+    public function addProduct($name, $price, $desc, $path_image, $id_category)
     {
         $data = [
             'name' => $name,
             'price' => $price,
             'description' => $desc,
-            'image' => $image,
+            'path_image' => $path_image,
             'id_category' => $id_category,
         ];
         return $this->createData($this->table, $data);
     }
 
-    public function updateProduct($id, $name, $price, $desc, $image, $id_category)
+    public function updateProduct($id, $name, $price, $desc, $path_image, $id_category)
     {
         $data = [
             'name' => $name,
             'price' => $price,
             'description' => $desc,
-            'image' => $image,
+            'path_image' => $path_image,
             'id_category' => $id_category,
         ];
 

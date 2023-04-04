@@ -1,3 +1,7 @@
+<?php
+
+use App\App\Core\Session;
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,25 +24,24 @@
                     </div>
                     <div class="card shadow-lg">
                         <div class="card-body p-5">
-                            <?php if (isset($_SESSION['sendMail'])) {  ?>
+                            <?php if (isset($_SESSION['success']['sendMail'])) {  ?>
                                 <div class="alert alert-success text-center">
-                                    <?php
-                                    echo $_SESSION['sendMail'];
-                                    ?>
+                                    <?= Session::getSuccess('sendMail') ?>
                                 </div>
                             <?php } ?>
-                            <?php if (isset($_SESSION['msg_forgot'])) :  ?>
+                            <?php if (isset($_SESSION['error']['veriOTP'])) :  ?>
                                 <div class="alert alert-danger text-center">
-                                    <?php
-                                    echo $_SESSION['msg_forgot'];
-                                    ?>
+                                    <?= Session::getError('veriOTP') ?>
                                 </div>
                             <?php endif; ?>
                             <h1 class="fs-4 card-title fw-bold mb-4 text-center">OTP - Quên mật khẩu</h1>
                             <form action="<?= ROOT_URL ?>ForgotController/veriResetOTP" method="POST" class="needs-validation">
                                 <div class="mb-3">
                                     <label class="mb-2 text-muted" for="otp">OTP</label>
-                                    <input id="otp" type="number" class="form-control" name="otp" required autofocus>
+                                    <input id="otp" type="number" class="form-control" name="otp">
+                                    <small class="text-danger">
+                                        <?= Session::getError('otp') ?>
+                                    </small>
                                 </div>
                                 <div class="d-flex align-items-center justify-content-center">
                                     <button type="submit" name="checkOTP" class="btn btn-primary mt-3">

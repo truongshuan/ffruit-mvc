@@ -4,6 +4,7 @@
 use App\App\Controllers\BaseController;
 use App\App\Core\Session;
 use App\App\Models\Admin;
+use App\App\Core\Validation;
 
 
 class AdminController extends BaseController
@@ -26,7 +27,6 @@ class AdminController extends BaseController
 
     public function Login()
     {
-        Session::init();
         if (Session::get('login') == true) {
             header("Location:" . ROOT_URL . "admin/index");
         } else {
@@ -45,47 +45,45 @@ class AdminController extends BaseController
     public function AuthLogin()
     {
         if (isset($_POST['login'])) {
-
-            $email = $_POST['email'];
-            $password = $_POST['password'];
-
-            $check_Auth = $this->_admin->checkLogin("admin", $email);
-
-            if ($check_Auth > 0) {
-
-                $data_Auth  = $this->_admin->getLogin("admin", $email);
-
-                extract($data_Auth);
-
-                if (password_verify($password, $data_Auth[0]['password'])) {
-
-                    // Set session lưu dữ liệu
-                    Session::init();
-                    Session::set('login', true);
-                    Session::set('username_admin', $data_Auth[0]['username']);
-                    Session::set('fullname_admin', $data_Auth[0]['fullname']);
-                    Session::set('id_admin', $data_Auth[0]['id']);
-                    // Check ghi nhớ mật khẩu
-                    if (isset($_POST['remember'])) {
-                        setcookie('emailAdmin', $email, time() + 20);
-                        setcookie('passwordAdmin', $password, time() + 20);
+            $validate = new Validation($_POST);
+            $errors = $validate->validateLogin();
+            if ($errors === null) {
+                $email = $_POST['email'];
+                $password = $_POST['password'];
+                $check_Auth = $this->_admin->checkLogin("admin", $email);
+                if ($check_Auth > 0) {
+                    $data_Auth  = $this->_admin->getLogin("admin", $email);
+                    extract($data_Auth);
+                    // check password
+                    if (password_verify($password, $data_Auth[0]['password'])) {
+                        // Luu du lieu vao Session
+                        Session::set('login', true);
+                        Session::set('username_admin', $data_Auth[0]['username']);
+                        Session::set('fullname_admin', $data_Auth[0]['fullname']);
+                        Session::set('id_admin', $data_Auth[0]['id']);
+                        // Check ghi nhớ mật khẩu
+                        if (isset($_POST['remember'])) {
+                            setcookie('emailAdmin', $email, time() + 20);
+                            setcookie('passwordAdmin', $password, time() + 20);
+                        }
+                        header("Location:" . ROOT_URL . "AdminController/Page");
+                    } else {
+                        Session::setError('massege', 'Mật khẩu không đúng');
+                        header("Location:" . ROOT_URL . "AdminController/Login");
                     }
-                    header("Location:" . ROOT_URL . "AdminController/Page");
                 } else {
-                    Session::init();
-                    Session::set('msg', 'Mật khẩu không đúng!');
+                    Session::setError('massege', 'Email hoặc mật khẩu không đúng');
                     header("Location:" . ROOT_URL . "AdminController/Login");
                 }
             } else {
-                Session::init();
-                Session::set('msg', 'Email hoặc mật khẩu không đúng!');
+                Session::setError('email', $errors['email']);
+                Session::setError('password', $errors['password']);
                 header("Location:" . ROOT_URL . "AdminController/Login");
             }
         }
     }
     public function logout()
     {
-        Session::init();
         unset($_SESSION['login']);
         unset($_SESSION['username_admin']);
         unset($_SESSION['fullname_admin']);
@@ -93,8 +91,8 @@ class AdminController extends BaseController
         header("Location:" . ROOT_URL . "AdminController/Login");
     }
 
-    public function addAdmin()
-    {
-        return $this->_admin->addAuth('shuan@nitez', 'Pham Truong Xuan', 'admin@gmail.com', password_hash('admin', PASSWORD_BCRYPT), 0, 1);
-    }
+    // public function addAdmin()
+    // {
+    //     return $this->_admin->addAuth('shuan@nitez', 'Pham Truong Xuan', 'admin@gmail.com', password_hash('admin', PASSWORD_BCRYPT), 0, 1);
+    // }
 }

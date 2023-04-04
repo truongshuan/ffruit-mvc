@@ -1,3 +1,9 @@
+<?php
+
+use App\App\Core\Session;
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,8 +13,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="description" content="This is a login page template based on Bootstrap 5">
     <title>FFruit - Quên mật khẩu</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
 </head>
 
 <body>
@@ -22,19 +27,18 @@
                     <div class="card shadow-lg">
                         <div class="card-body p-5">
                             <h1 class="fs-4 card-title fw-bold mb-4 text-center">Quên mật khẩu</h1>
-                            <?php if (isset($_SESSION['msg_forgot'])) :  ?>
-                            <div class="alert alert-danger text-center">
-                                <?php
-                                    echo $_SESSION['msg_forgot'];
-                                    ?>
-                            </div>
+                            <?php if (isset($_SESSION['error']['error_forgot'])) :  ?>
+                                <div class="alert alert-danger text-center">
+                                    <?= Session::getError('error_forgot') ?>
+                                </div>
                             <?php endif; ?>
-                            <form action="<?= ROOT_URL ?>ForgotController/action" method="POST"
-                                class="needs-validation">
+                            <form action="<?= ROOT_URL ?>ForgotController/action" method="POST" class="needs-validation">
                                 <div class="mb-3">
                                     <label class="mb-2 text-muted" for="email">E-Mail</label>
-                                    <input id="email" type="email" class="form-control" name="email" value="" required
-                                        autofocus>
+                                    <input id="email" type="text" class="form-control" name="email">
+                                    <small class="text-danger">
+                                        <?= Session::getError('email') ?>
+                                    </small>
                                 </div>
                                 <div class="d-flex align-items-center justify-content-center">
                                     <button type="submit" name="forgot" class="btn btn-primary mt-3">
@@ -45,8 +49,7 @@
                         </div>
                         <div class="card-footer py-3 border-0">
                             <div class="text-center">
-                                Bạn đã nhớ ra? <a href="<?= ROOT_URL ?>UserController/login"
-                                    class="text-primary text-decoration-none">Đăng
+                                Bạn đã nhớ ra? <a href="<?= ROOT_URL ?>UserController/login" class="text-primary text-decoration-none">Đăng
                                     nhập</a>
                             </div>
                         </div>
@@ -61,7 +64,6 @@
 
 </html>
 <?php
-
 if (isset($_SESSION['msg_forgot'])) {
     unset($_SESSION['msg_forgot']);
 }

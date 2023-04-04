@@ -38,6 +38,7 @@ class Admin extends BaseModel
             'status' => 1
         ];
 
+
         return $this->createData($this->table, $data);
     }
 }

@@ -26,7 +26,7 @@
                                 <?php foreach ($data['product'] as $item) : ?>
                                     <tr>
                                         <td><?= @$item['id'] ?></td>
-                                        <td><img src="<?php echo ROOT_URL . 'public/upload/product/' . $item['image'] ?>" alt="image" width="100px"></td>
+                                        <td><img src="<?= ROOT_URL . $item['path_image'] ?>" alt="image" width="100px"></td>
                                         <td><?= @$item['name'] ?></td>
                                         <td><?= number_format($item['price']) . ' VND' ?></td>
                                         <td><?= $item['description'] ?></td>
@@ -39,10 +39,10 @@
                                             }
                                             ?>
                                         </td>
-                                        <td><?php echo $item['created_at']; ?></td>
+                                        <td><?php echo date('d-m-Y', strtotime($item['created_at'])) ?></td>
                                         <td>
-                                            <a href="<?= ROOT_URL . 'ProductController/edit/' . @$item['id'] ?>" class="btn btn-primary"><i class="fa fa-edit""></i></a>
-                                        <a href=" <?= ROOT_URL . 'ProductController/delete/' . @$item['id'] ?>" class=" btn btn-danger"><i class="fa fa-trash""></i></a>
+                                            <a href="<?= ROOT_URL . 'ProductController/edit/' . @$item['id'] ?>" class="btn btn-primary"><i class="fa fa-edit"></i></a>
+                                            <a href=" <?= ROOT_URL . 'ProductController/delete/' . @$item['id'] ?>" class=" btn btn-danger"><i class="fa fa-trash"></i></a>
                                         </td>
                                         </td>
                                     </tr>

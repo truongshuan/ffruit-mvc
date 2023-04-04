@@ -87,7 +87,87 @@ class BaseModel
             return $query->execute();
         }
     }
+    /**
+     * @param $table
+     * @param $fields
+     * @param $conditions
+     *
+     * @return mixed
+     */
+    protected function selectOne($table, $fields, $conditions)
+    {
+        $sql    = "SELECT " . implode(", ", $fields) . " FROM " . $table;
+        $where  = [];
+        $params = [];
+        foreach ($conditions as $key => $value) {
+            $where[]  = $key . " = ?";
+            $params[] = $value;
+        }
+        if (!empty($where)) {
+            $sql .= " WHERE " . implode(" AND ", $where);
+        }
 
+        $stmt = $this->pdo->prepare($sql);
+
+        $stmt->execute($params);
+
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        $this->disconnect();
+
+        return $result;
+    }
+
+    /**
+     * @param $table
+     * @param $fields
+     * @param $conditions
+     * @param $relationTable
+     * @param $relationFields
+     * @param $relationConditions
+     * @param $limit
+     *
+     * @return array|false
+     */
+    public function selectWithRelation($table, $fields, $conditions, $relationTable, $relationFields, $relationConditions, $fkey, $relationfkey, $limit, $order)
+    {
+        $pdo = $this->connect();
+
+        $sql    = "SELECT " . implode(", ", $fields) . ", " . implode(", ", $relationFields) . " FROM " . $table;
+        $where  = [];
+        $params = [];
+        foreach ($conditions as $key => $value) {
+            $where[]  = $key . " = ?";
+            $params[] = $value;
+        }
+        if (!empty($where)) {
+            $sql .= " WHERE " . implode(" AND ", $where);
+        }
+
+        // Thực hiện kết nối đến bảng khác bằng phương thức join()
+        $sql .= " INNER JOIN " . $relationTable . " ON " . $fkey . " = " . $relationTable . ".$relationfkey";
+        $where = [];
+        foreach ($relationConditions as $key => $value) {
+            $where[]  = $key . " = ?";
+            $params[] = $value;
+        }
+        if (!empty($where)) {
+            $sql .= " WHERE " . implode(" AND ", $where);
+        }
+
+        if ($limit !== 0 && $limit > 0) {
+            $sql .= " " . $order .  " limit " . $limit;
+        }
+
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute($params);
+
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        $this->disconnect();
+
+        return $result;
+    }
 
     protected function update($table, $data, $conditions)
     {
@@ -162,6 +242,11 @@ class BaseModel
     public function readData($table, $fields, $conditions)
     {
         return $this->select($table, $fields, $conditions);
+    }
+    public function getOne($table, $fields, $conditions)
+    {
+
+        return $this->selectOne($table, $fields, $conditions);
     }
 
     public function updateData($table, $data, $conditions)

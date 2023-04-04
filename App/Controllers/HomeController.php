@@ -16,17 +16,23 @@ class HomeController extends BaseController
     {
         $this->homePage();
     }
+
+    /**
+     * @throws Exception
+     */
     function homePage()
     {
-        Session::init();
-        // $this->load->render('layouts/client/header');
-        // $this->load->render('layouts/client/slider');
-        $this->load->render('client/Auth/otp');
-        // $this->load->render('layouts/client/footer');
+        $this->load->render('layouts/client/header');
+        $this->load->render('layouts/client/slider');
+        $this->load->render('client/index');
+        $this->load->render('layouts/client/footer');
     }
+
+    /**
+     * @throws Exception
+     */
     function Error()
     {
-        Session::init();
         $this->load->render('layouts/client/header');
         $this->load->render('client/404');
         $this->load->render('layouts/client/footer');
