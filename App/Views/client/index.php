@@ -66,51 +66,59 @@
         </div>
 
         <div class="row">
-            <div class="col-lg-4 col-md-6 text-center">
-                <div class="single-product-item">
-                    <div class="product-image">
-                        <a href="single-product.php"><img src="public/assets/client/img/products/product-img-1.jpg" alt=""></a>
-                    </div>
-                    <h3>Strawberry</h3>
-                    <p class="product-price"><span>Per Kg</span> 85$ </p>
-                    <div class="d-flex justify-content-center align-items-center">
-                        <a href="contact.php" class="boxed-btn me-5 mr-3"><i class="fas fa-shopping-cart"></i>
-                            Thêm</a>
-                        <a href="contact.php" class="boxed-btn "><i class="fas fa-eye"></i> Chi
-                            tiết</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 text-center">
-                <div class="single-product-item">
-                    <div class="product-image">
-                        <a href="single-product.php"><img src="public/assets/client/img/products/product-img-2.jpg" alt=""></a>
-                    </div>
-                    <h3>Berry</h3>
-                    <p class="product-price"><span>Per Kg</span> 70$ </p>
-                    <div class="d-flex justify-content-center align-items-center">
-                        <a href="contact.php" class="boxed-btn me-5 mr-3"><i class="fas fa-shopping-cart"></i>
-                            Thêm</a>
-                        <a href="contact.php" class="boxed-btn"><i class="fas fa-eye"></i> Chi
-                            tiết</a>
-                    </div>
-                </div>
-            </div>
+<!--            <div class="col-lg-4 col-md-6 text-center">-->
+<!--                <div class="single-product-item">-->
+<!--                    <div class="product-image">-->
+<!--                        <a href="single-product.php"><img src="public/assets/client/img/products/product-img-1.jpg" alt=""></a>-->
+<!--                    </div>-->
+<!--                    <h3>Strawberry</h3>-->
+<!--                    <p class="product-price"><span>Per Kg</span> 85$ </p>-->
+<!--                    <div class="d-flex justify-content-center align-items-center">-->
+<!--                        <a href="contact.php" class="boxed-btn me-5 mr-3"><i class="fas fa-shopping-cart"></i>-->
+<!--                            Thêm</a>-->
+<!--                        <a href="contact.php" class="boxed-btn "><i class="fas fa-eye"></i> Chi-->
+<!--                            tiết</a>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="col-lg-4 col-md-6 text-center">-->
+<!--                <div class="single-product-item">-->
+<!--                    <div class="product-image">-->
+<!--                        <a href="single-product.php"><img src="public/assets/client/img/products/product-img-2.jpg" alt=""></a>-->
+<!--                    </div>-->
+<!--                    <h3>Berry</h3>-->
+<!--                    <p class="product-price"><span>Per Kg</span> 70$ </p>-->
+<!--                    <div class="d-flex justify-content-center align-items-center">-->
+<!--                        <a href="contact.php" class="boxed-btn me-5 mr-3"><i class="fas fa-shopping-cart"></i>-->
+<!--                            Thêm</a>-->
+<!--                        <a href="contact.php" class="boxed-btn"><i class="fas fa-eye"></i> Chi-->
+<!--                            tiết</a>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+            <?php
+            if(!empty($data)):
+                foreach ($data['products'] as $product):
+            ?>
             <div class="col-lg-4 col-md-6 offset-md-3 offset-lg-0 text-center">
                 <div class="single-product-item">
                     <div class="product-image">
-                        <a href="single-product.php"><img src="public/assets/client/img/products/product-img-3.jpg" alt=""></a>
+                        <a href="<?= ROOT_URL . 'ClientProductController/detail/' . $product['id'] ?>"><img src="<?= $product['path_image'] ?>" alt="<?= $product['name'] ?>"></a>
                     </div>
-                    <h3>Lemon</h3>
-                    <p class="product-price"><span>Per Kg</span> 35$ </p>
+                    <h3><?= $product['name'] ?></h3>
+                    <p class="product-price"><span><?= $product['title'] ?></span><?= number_format($product['price']) ?> VND </p>
                     <div class="d-flex justify-content-center align-items-center">
                         <a href="contact.php" class="boxed-btn me-5 mr-3"><i class="fas fa-shopping-cart"></i>
                             Thêm</a>
-                        <a href="contact.php" class="boxed-btn "><i class=" fas fa-eye"></i> Chi
+                        <a href="<?= ROOT_URL . 'ClientProductController/detail/' . $product['id'] ?>" class="boxed-btn "><i class=" fas fa-eye"></i> Chi
                             tiết</a>
                     </div>
                 </div>
             </div>
+            <?php
+            endforeach;
+            endif;
+            ?>
         </div>
     </div>
 </div>
@@ -266,57 +274,64 @@
         </div>
 
         <div class="row">
+            <?php if(!empty($data)):
+                foreach ($data['posts'] as $item):
+                ?>
             <div class="col-lg-4 col-md-6">
                 <div class="single-latest-news">
-                    <a href="single-news.php">
-                        <div class="latest-news-bg news-bg-1"></div>
+                    <a href="<?= ROOT_URL . 'ClientPostController/detail/'. @$item['id'] ?>">
+                        <div class="latest-news-bg news-bg-1" style="background-image: url(<?= $item['thumbnail'] ?>)"></div>
                     </a>
                     <div class="news-text-box">
-                        <h3><a href="single-news.php">You will vainly look for fruit on it in autumn.</a></h3>
+                        <h3><a href="single-news.php"><?= $item['title'] ?></a></h3>
                         <p class="blog-meta">
-                            <span class="author"><i class="fas fa-user"></i> Admin</span>
-                            <span class="date"><i class="fas fa-calendar"></i> 27 December, 2019</span>
+                            <span class="author"><i class="fas fa-user"></i><?= ($data['author']['id'] == $item['id_author']) ? $data['author']['fullname']  : 'Admin' ?></span>
+                            <span class="date"><i class="fas fa-calendar"></i><?php echo date('d-m-Y', strtotime($item['created_at'])) ?></span>
                         </p>
-                        <p class="excerpt">Vivamus lacus enim, pulvinar vel nulla sed, scelerisque rhoncus nisi.
-                            Praesent vitae mattis nunc, egestas viverra eros.</p>
-                        <a href="single-news.php" class="read-more-btn">read more <i class="fas fa-angle-right"></i></a>
+                        <p class="excerpt">
+                            <div class="cut">
+                            <?= $item['content'] ?>
+                            </div>
+                        </p>
+                        <a href="<?= ROOT_URL . 'ClientPostController/detail/'. @$item['id'] ?>" class="read-more-btn">read more <i class="fas fa-angle-right"></i></a>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="single-latest-news">
-                    <a href="single-news.php">
-                        <div class="latest-news-bg news-bg-2"></div>
-                    </a>
-                    <div class="news-text-box">
-                        <h3><a href="single-news.php">A man's worth has its season, like tomato.</a></h3>
-                        <p class="blog-meta">
-                            <span class="author"><i class="fas fa-user"></i> Admin</span>
-                            <span class="date"><i class="fas fa-calendar"></i> 27 December, 2019</span>
-                        </p>
-                        <p class="excerpt">Vivamus lacus enim, pulvinar vel nulla sed, scelerisque rhoncus nisi.
-                            Praesent vitae mattis nunc, egestas viverra eros.</p>
-                        <a href="single-news.php" class="read-more-btn">read more <i class="fas fa-angle-right"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 offset-md-3 offset-lg-0">
-                <div class="single-latest-news">
-                    <a href="single-news.php">
-                        <div class="latest-news-bg news-bg-3"></div>
-                    </a>
-                    <div class="news-text-box">
-                        <h3><a href="single-news.php">Good thoughts bear good fresh juicy fruit.</a></h3>
-                        <p class="blog-meta">
-                            <span class="author"><i class="fas fa-user"></i> Admin</span>
-                            <span class="date"><i class="fas fa-calendar"></i> 27 December, 2019</span>
-                        </p>
-                        <p class="excerpt">Vivamus lacus enim, pulvinar vel nulla sed, scelerisque rhoncus nisi.
-                            Praesent vitae mattis nunc, egestas viverra eros.</p>
-                        <a href="single-news.php" class="read-more-btn">read more <i class="fas fa-angle-right"></i></a>
-                    </div>
-                </div>
-            </div>
+            <?php endforeach; endif; ?>
+<!--            <div class="col-lg-4 col-md-6">-->
+<!--                <div class="single-latest-news">-->
+<!--                    <a href="single-news.php">-->
+<!--                        <div class="latest-news-bg news-bg-2"></div>-->
+<!--                    </a>-->
+<!--                    <div class="news-text-box">-->
+<!--                        <h3><a href="single-news.php">A man's worth has its season, like tomato.</a></h3>-->
+<!--                        <p class="blog-meta">-->
+<!--                            <span class="author"><i class="fas fa-user"></i> Admin</span>-->
+<!--                            <span class="date"><i class="fas fa-calendar"></i> 27 December, 2019</span>-->
+<!--                        </p>-->
+<!--                        <p class="excerpt">Vivamus lacus enim, pulvinar vel nulla sed, scelerisque rhoncus nisi.-->
+<!--                            Praesent vitae mattis nunc, egestas viverra eros.</p>-->
+<!--                        <a href="single-news.php" class="read-more-btn">read more <i class="fas fa-angle-right"></i></a>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="col-lg-4 col-md-6 offset-md-3 offset-lg-0">-->
+<!--                <div class="single-latest-news">-->
+<!--                    <a href="single-news.php">-->
+<!--                        <div class="latest-news-bg news-bg-3"></div>-->
+<!--                    </a>-->
+<!--                    <div class="news-text-box">-->
+<!--                        <h3><a href="single-news.php">Good thoughts bear good fresh juicy fruit.</a></h3>-->
+<!--                        <p class="blog-meta">-->
+<!--                            <span class="author"><i class="fas fa-user"></i> Admin</span>-->
+<!--                            <span class="date"><i class="fas fa-calendar"></i> 27 December, 2019</span>-->
+<!--                        </p>-->
+<!--                        <p class="excerpt">Vivamus lacus enim, pulvinar vel nulla sed, scelerisque rhoncus nisi.-->
+<!--                            Praesent vitae mattis nunc, egestas viverra eros.</p>-->
+<!--                        <a href="single-news.php" class="read-more-btn">read more <i class="fas fa-angle-right"></i></a>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
         </div>
         <div class="row">
             <div class="col-lg-12 text-center">

@@ -1638,7 +1638,7 @@ div.owl-controls,
 
 ----------------------------------------------------------------------------- */
 .news-bg-1 {
-  background-image: url(../img/latest-news/news-bg-1.jpg);
+  /*background-image: url(../img/latest-news/news-bg-1.jpg);*/
 }
 
 .news-bg-2 {
@@ -1700,7 +1700,13 @@ p.excerpt {
   line-height: 1.8;
   color: #555;
 }
-
+.cut {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
 .latest-news a.boxed-btn {
   margin-top: 80px;
 }
@@ -1716,7 +1722,7 @@ p.excerpt {
 }
 
 .single-artcile-bg {
-  background-image: url(../img/latest-news/news-bg-3.jpg);
+  /*background-image: url(../img/latest-news/news-bg-3.jpg);*/
   height: 450px;
 }
 

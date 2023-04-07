@@ -28,7 +28,8 @@ class AdminController extends BaseController
     public function Login()
     {
         if (Session::get('login') == true) {
-            header("Location:" . ROOT_URL . "admin/index");
+//            header("Location:" . ROOT_URL . "admin/index");
+            $this->redirect(ROOT_URL . "admin/index");
         } else {
             $this->load->render('admin/signin');
         }
@@ -66,19 +67,27 @@ class AdminController extends BaseController
                             setcookie('emailAdmin', $email, time() + 20);
                             setcookie('passwordAdmin', $password, time() + 20);
                         }
-                        header("Location:" . ROOT_URL . "AdminController/Page");
+//                        header("Location:" . ROOT_URL . "AdminController/Page");
+                        $this->redirect(ROOT_URL . 'AdminController/Page');
+
                     } else {
                         Session::setError('massege', 'Mật khẩu không đúng');
-                        header("Location:" . ROOT_URL . "AdminController/Login");
+//                        header("Location:" . ROOT_URL . "AdminController/Login");
+                        $this->redirect(ROOT_URL . 'AdminController/Login');
+
                     }
                 } else {
                     Session::setError('massege', 'Email hoặc mật khẩu không đúng');
-                    header("Location:" . ROOT_URL . "AdminController/Login");
+//                    header("Location:" . ROOT_URL . "AdminController/Login");
+                    $this->redirect(ROOT_URL . 'AdminController/Login');
+
                 }
+
             } else {
                 Session::setError('email', $errors['email']);
                 Session::setError('password', $errors['password']);
-                header("Location:" . ROOT_URL . "AdminController/Login");
+//                header("Location:" . ROOT_URL . "AdminController/Login");
+                $this->redirect(ROOT_URL . 'AdminController/Login');
             }
         }
     }
@@ -88,7 +97,8 @@ class AdminController extends BaseController
         unset($_SESSION['username_admin']);
         unset($_SESSION['fullname_admin']);
         unset($_SESSION['id_admin']);
-        header("Location:" . ROOT_URL . "AdminController/Login");
+//        header("Location:" . ROOT_URL . "AdminController/Login");
+        $this->redirect(ROOT_URL . 'AdminController/Login');
     }
 
     // public function addAdmin()

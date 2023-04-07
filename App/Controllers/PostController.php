@@ -33,10 +33,12 @@ class PostController extends BaseController
         $this->_post = new Post();
         $this->_topic = new Topic();
     }
+
     /**
      * list là phương thức lấy toàn bộ bài viết
      * @param mixed
      * @return void
+     * @throws Exception
      */
     public function list(): void
     {

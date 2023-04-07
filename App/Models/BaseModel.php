@@ -39,7 +39,16 @@ class BaseModel
     {
         $this->_connection = null;
     }
-    protected function select($table, $fields, $conditions)
+
+    /**
+     * @param $table
+     * @param $fields
+     * @param $conditions
+     * @param $limit
+     *
+     * @return array|false
+     */
+    protected function select($table, $fields, $conditions, $limit = 0): bool|array
     {
         $pdo = $this->connect();
 
@@ -52,6 +61,10 @@ class BaseModel
         }
         if (!empty($where)) {
             $sql .= " WHERE " . implode(" AND ", $where);
+        }
+
+        if ($limit !== 0 && $limit > 0) {
+            $sql .= " limit " . $limit;
         }
 
         $stmt = $pdo->prepare($sql);
@@ -158,7 +171,6 @@ class BaseModel
         if ($limit !== 0 && $limit > 0) {
             $sql .= " " . $order .  " limit " . $limit;
         }
-
         $stmt = $pdo->prepare($sql);
         $stmt->execute($params);
 
