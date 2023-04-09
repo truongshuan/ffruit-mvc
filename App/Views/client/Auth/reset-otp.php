@@ -28,6 +28,10 @@ use App\App\Core\Session;
                                 <div class="alert alert-success text-center">
                                     <?= Session::getSuccess('sendMail') ?>
                                 </div>
+                            <?php } ?><?php if (isset($_SESSION['success']['sendSMS'])) {  ?>
+                                <div class="alert alert-success text-center">
+                                    <?= Session::getSuccess('sendSMS') ?>
+                                </div>
                             <?php } ?>
                             <?php if (isset($_SESSION['error']['veriOTP'])) :  ?>
                                 <div class="alert alert-danger text-center">

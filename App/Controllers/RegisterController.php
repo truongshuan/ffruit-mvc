@@ -38,6 +38,7 @@ class RegisterController extends BaseController
                 $fullname = $_POST['fullname'];
                 $password = $_POST['password'];
                 $password_confirm = $_POST['confirm'];
+                $phone = $_POST['phone'];
                 if ($this->_register->checkUserExists("users", $email) > 0) {
                     Session::setError('error', 'Email đã tồn tại');
                     header("Location:" . ROOT_URL . "RegisterController/register");
@@ -45,10 +46,11 @@ class RegisterController extends BaseController
                     $code = rand(99999, 11111);
                     $status = "notverified";
                     $encpass = password_hash($password, PASSWORD_BCRYPT);
-                    $this->_register->addUser($username, $email, $fullname, $encpass, $code, $status);
+                    $this->_register->addUser($username, $email, $phone,$fullname, $encpass, $code, $status);
                     $content = "Admin FFruit đã gửi mã xác thực email đến " . $email;
                     $url = "register";
-                    $sendOTP  = new Email($email, $code, $content, $url);
+                    $sendOTP  = new Email();
+                    $sendOTP->MailOTP($email, $code, $content, $url);
                     header("Location:" . ROOT_URL . "UserController/otp");
                 }
             } else {
@@ -57,6 +59,7 @@ class RegisterController extends BaseController
                 Session::setError('fullname', $errors['fullname']);
                 Session::setError('password', $errors['password']);
                 Session::setError('confirm', $errors['confirm']);
+                Session::setError('phone', $errors['phone']);
                 header("location:" . ROOT_URL . "RegisterController/register");
             }
         }

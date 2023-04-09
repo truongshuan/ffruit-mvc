@@ -103,12 +103,12 @@
             <div class="col-lg-4 col-md-6 offset-md-3 offset-lg-0 text-center">
                 <div class="single-product-item">
                     <div class="product-image">
-                        <a href="<?= ROOT_URL . 'ClientProductController/detail/' . $product['id'] ?>"><img src="<?= $product['path_image'] ?>" alt="<?= $product['name'] ?>"></a>
+                        <a href="<?= ROOT_URL . 'ClientProductController/detail/' . $product['id'] ?>"><img src="<?= ROOT_URL . $product['path_image'] ?>" alt="<?= $product['name'] ?>"></a>
                     </div>
                     <h3><?= $product['name'] ?></h3>
                     <p class="product-price"><span><?= $product['title'] ?></span><?= number_format($product['price']) ?> VND </p>
                     <div class="d-flex justify-content-center align-items-center">
-                        <a href="contact.php" class="boxed-btn me-5 mr-3"><i class="fas fa-shopping-cart"></i>
+                        <a href="<?= ROOT_URL . 'CartController/addToCart/' . $product['id'] ?>" class="boxed-btn me-5 mr-3"><i class="fas fa-shopping-cart"></i>
                             Thêm</a>
                         <a href="<?= ROOT_URL . 'ClientProductController/detail/' . $product['id'] ?>" class="boxed-btn "><i class=" fas fa-eye"></i> Chi
                             tiết</a>
@@ -280,10 +280,10 @@
             <div class="col-lg-4 col-md-6">
                 <div class="single-latest-news">
                     <a href="<?= ROOT_URL . 'ClientPostController/detail/'. @$item['id'] ?>">
-                        <div class="latest-news-bg news-bg-1" style="background-image: url(<?= $item['thumbnail'] ?>)"></div>
+                        <div class="latest-news-bg news-bg-1" style="background-image: url(<?= ROOT_URL . $item['thumbnail'] ?>)"></div>
                     </a>
                     <div class="news-text-box">
-                        <h3><a href="single-news.php"><?= $item['title'] ?></a></h3>
+                        <h3><a href="<?= ROOT_URL . 'ClientPostController/detail/'. @$item['id'] ?>"><?= $item['title'] ?></a></h3>
                         <p class="blog-meta">
                             <span class="author"><i class="fas fa-user"></i><?= ($data['author']['id'] == $item['id_author']) ? $data['author']['fullname']  : 'Admin' ?></span>
                             <span class="date"><i class="fas fa-calendar"></i><?php echo date('d-m-Y', strtotime($item['created_at'])) ?></span>

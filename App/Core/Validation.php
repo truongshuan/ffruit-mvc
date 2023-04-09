@@ -20,7 +20,7 @@ class Validation
         $this->validateInfor();
         $this->validatePassword(true);
         $this->validatePasswordConfirm();
-        // $this->validatePhone();
+         $this->validatePhone();
 
         return $this->errors;
     }
@@ -65,6 +65,11 @@ class Validation
     {
         $this->validateCategories();
 
+
+        return $this->errors;
+    }
+    public  function validateSMS(){
+        $this->validatePhone();
 
         return $this->errors;
     }
@@ -121,9 +126,9 @@ class Validation
     {
         $phone = trim($this->data['phone']);
         if (empty($phone)) {
-            $this->getError('phone', 'Please enter phone');
+            $this->getError('phone', 'Nhập số điện thoại');
         } else if (strlen($phone) > 9 || strlen($phone) < 9) {
-            $this->getError('phone', 'Phone must be 9 chars');
+            $this->getError('phone', 'Số điện thoại chỉ 9 kí tự');
         }
     }
     private function validateOTP()

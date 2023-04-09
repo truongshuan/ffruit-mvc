@@ -20,6 +20,9 @@ class Session
     {
         $_SESSION[$key] = $value;
     }
+    public static function setCart($key, $value){
+        $_SESSION['cart'][$key] = $value;
+    }
     public static function setError($name, $content)
     {
         $_SESSION[self::$_typeError][$name] = $content;
@@ -53,8 +56,14 @@ class Session
     public static function checkSession()
     {
         if (self::get('login') == false) {
-            self::detroy();
+//            self::detroy();
             header("Location:" . ROOT_URL . "AdminController/Login");
+        }
+    }
+    public static function checkLoginUser(){
+        if (self::get('login_user') == false) {
+//            self::detroy();
+            header("Location:" . ROOT_URL . "UserController/login");
         }
     }
 
@@ -66,5 +75,19 @@ class Session
     public static function unset($type, $name)
     {
         unset($_SESSION[$type][$name]);
+    }
+    public static function totalCart($cart){
+        $total = 0;
+        foreach ($cart as $item){
+            $total += $item['quality'] * $item['price'];
+        }
+        return $total;
+    }
+    public static function totalItemCart($cart){
+        $total = 0;
+        foreach ($cart as $item){
+            $total += $item['quality'];
+        }
+        return $total;
     }
 }

@@ -24,7 +24,7 @@ use App\App\Core\Session;
     <section class="h-100">
         <div class="container h-100">
             <div class="row justify-content-sm-center h-100">
-                <div class="col-xxl-4 col-xl-5 col-lg-5 col-md-7 col-sm-9">
+                <div class="col-xxl-6 col-xl-5 col-lg-5 col-md-7 col-sm-9">
                     <div class="text-center my-5">
                         <img src="<?= ROOT_URL ?>public/assets/client/img/favicon-v.png" alt="logo" width="100">
                     </div>
@@ -37,12 +37,25 @@ use App\App\Core\Session;
                                 </div>
                             <?php endif; ?>
                             <form action="<?= ROOT_URL ?>RegisterController/actionRegister" method="POST" class="needs-validation">
-                                <div class="mb-1">
-                                    <label class="mb-2 text-muted" for="email">E-Mail</label>
-                                    <input id="email" name="email" type="text" class="form-control">
-                                    <small class="text-danger">
-                                        <?= Session::getError('email') ?>
-                                    </small>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="mb-1">
+                                            <label class="mb-2 text-muted" for="email">E-Mail</label>
+                                            <input id="email" name="email" type="text"  class="form-control">
+                                            <small class="text-danger">
+                                                <?= Session::getError('email') ?>
+                                            </small>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="mb-1">
+                                            <label class="mb-2 text-muted" for="phone">Phone</label>
+                                            <input id="phone" name="phone" type="number" placeholder="961518977" class="form-control">
+                                            <small class="text-danger">
+                                                <?= Session::getError('phone') ?>
+                                            </small>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="mb-1">
                                     <label class="mb-2 text-muted" for="username">Username</label>

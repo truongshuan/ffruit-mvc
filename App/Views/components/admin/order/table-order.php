@@ -8,31 +8,51 @@
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">Khách hàng</th>
-                                    <th scope="col">Tên sản phẩm</th>
-                                    <th scope="col">Số lượng</th>
-                                    <th scope="col">Tổng tiền</th>
-                                    <th scope="col">Ngày đặt</th>
+                                    <th scope="col">ID</th>
+                                    <th scope="col">Phone</th>
+                                    <th scope="col">Email</th>
                                     <th scope="col">Địa chỉ</th>
+                                    <th scope="col">Ghi chú</th>
+                                    <th scope="col">Phương thức</th>
+                                    <th scope="col">Thời gian</th>
+                                    <th scope="col">Khách hàng</th>
                                     <th scope="col">Trạng thái</th>
                                     <th scope="col">Chỉnh sửa</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <th>1</th>
-                                    <th>Phạm Trường Xuân</th>
-                                    <th>Nho</th>
-                                    <th>2</th>
-                                    <th><?= number_format(25000) . ' đ' ?></th>
-                                    <th>24/3/2023</th>
-                                    <th>125/2 Hòa Hưng</th>
-                                    <th>Đang chờ</th>
-                                    <th>
-                                        <a href="<?= ROOT_URL . 'OrderController/edit/' . 1 ?>" class="btn btn-primary"><i class="fa fa-edit"></i></a>
-                                    </th>
-                                </tr>
+                                <?php
+                                if (!empty($data)) :
+                                    foreach ($data as $order) :
+                                ?>
+                                        <tr>
+                                            <th><?= $order['id'] ?></th>
+                                            <th><?= $order['phone'] ?></th>
+                                            <th><?= $order['email'] ?></th>
+                                            <th><?= $order['address'] ?></th>
+                                            <th><?= $order['note'] ?></th>
+                                            <th><?= $order['payment_method'] ?></th>
+                                            <th><?php echo date('d-m-Y', strtotime($order['created_at'])) ?></th>
+                                            <th><?= $order['fullname'] ?></th>
+                                            <th>
+                                                <?php
+                                                if ($order['status'] == 0) {
+                                                    echo 'Đang chờ';
+                                                } else if ($order['status'] == 1) {
+                                                    echo 'Đã duyệt';
+                                                } else {
+                                                    echo 'Đã hủy';
+                                                }
+                                                ?>
+                                            </th>
+                                            <th>
+                                                <a href="<?= ROOT_URL . 'OrderController/edit/' . $order['id'] ?>" class="btn btn-primary"><i class="fa fa-edit"></i></a>
+                                            </th>
+                                        </tr>
+                                <?php
+                                    endforeach;
+                                endif;
+                                ?>
                             </tbody>
                         </table>
                     </div>

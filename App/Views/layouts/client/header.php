@@ -111,6 +111,7 @@ use App\App\Core\Session;
                                 <?php if (isset($_SESSION['username_user'])) { ?>
                                     <li><a href="shop.php"><?php echo $_SESSION['username_user']; ?></a>
                                         <ul class="sub-menu">
+                                            <li><a href="<?= ROOT_URL ?>CheckoutController/listOrder/<?= $_SESSION['id_user']?>">Đơn hàng</a></li>
                                             <li><a href="<?= ROOT_URL ?>UserController/logout">Đăng xuất</a></li>
                                         </ul>
                                     </li>
@@ -125,7 +126,15 @@ use App\App\Core\Session;
                                 <?php } ?>
                                 <li>
                                     <div class="header-icons">
-                                        <a class="shopping-cart" href="cart.php"><i class="fas fa-shopping-cart"></i></a>
+                                        <a class="shopping-cart" href="<?= ROOT_URL . 'CartController/cart'?>"><i class="fas fa-shopping-cart">
+                                                <?php
+                                                if(isset($_SESSION['cart'])){
+                                                    echo Session::totalItemCart($_SESSION['cart']);
+                                                }else{
+                                                    echo '';
+                                                }
+                                                ?>
+                                            </i></a>
                                         <a class="mobile-hide search-bar-icon" href="#"><i class="fas fa-search"></i></a>
                                     </div>
                                 </li>

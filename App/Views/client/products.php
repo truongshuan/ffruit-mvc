@@ -51,7 +51,7 @@
                     <h3>Strawberry</h3>
                     <p class="product-price"><span><?= $product['title'] ?></span><?= number_format($product['price']) ?></p>
                     <div class="d-flex justify-content-center align-items-center">
-                        <a href="single-product.php" class="boxed-btn me-5 mr-3"><i class="fas fa-shopping-cart"></i>
+                        <a href="<?= ROOT_URL . 'CartController/addToCart/' . $product['id'] ?>" class="boxed-btn me-5 mr-3"><i class="fas fa-shopping-cart"></i>
                             Thêm</a>
                         <a href="<?= ROOT_URL . 'ClientProductController/detail/' . $product['id'] ?>" class="boxed-btn "><i class=" fas fa-eye"></i> Chi
                             tiết</a>

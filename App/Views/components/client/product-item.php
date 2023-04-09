@@ -1,5 +1,5 @@
 <?php
-if(!empty($data)){
+if (!empty($data)) {
 ?>
     <!-- breadcrumb-section -->
     <div class="breadcrumb-section breadcrumb-bg">
@@ -31,11 +31,12 @@ if(!empty($data)){
                         <p class="single-product-pricing"><span>KG</span><?= number_format($data['product'][0]['price']) ?>VND</p>
                         <p><?= $data['product'][0]['description'] ?></p>
                         <div class="single-product-form">
-                            <form action="#">
-                                <input type="number" name="quality" placeholder="0">
+                            <form action="<?= ROOT_URL . 'CartController/addToCart/' . $data['product'][0]['id'] ?>" method="POST">
+                                <input type="number" name="quality" placeholder="0" required>
+                                <br>
+                                <input type="submit" name="submit" class="cart-btn fas fa-shopping-cart" value="Thêm">
                             </form>
-                            <a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
-                                <p><strong>Danh mục: </strong><?= $data['product'][0]['title'] ?></p>
+                            <p><strong>Danh mục: </strong><?= $data['product'][0]['title'] ?></p>
                         </div>
                         <h4>Share:</h4>
                         <ul class="product-share">
@@ -64,55 +65,55 @@ if(!empty($data)){
                 </div>
             </div>
             <div class="row">
-<!--                <div class="col-lg-4 col-md-6 text-center">-->
-<!--                    <div class="single-product-item">-->
-<!--                        <div class="product-image">-->
-<!--                            <a href="single-product.html"><img src="assets/img/products/product-img-1.jpg" alt=""></a>-->
-<!--                        </div>-->
-<!--                        <h3>Strawberry</h3>-->
-<!--                        <p class="product-price"><span>Per Kg</span> 85$ </p>-->
-<!--                        <a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <div class="col-lg-4 col-md-6 text-center">-->
-<!--                    <div class="single-product-item">-->
-<!--                        <div class="product-image">-->
-<!--                            <a href="single-product.html"><img src="assets/img/products/product-img-2.jpg" alt=""></a>-->
-<!--                        </div>-->
-<!--                        <h3>Berry</h3>-->
-<!--                        <p class="product-price"><span>Per Kg</span> 70$ </p>-->
-<!--                        <a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>-->
-<!--                    </div>-->
-<!--                </div>-->
+                <!--                <div class="col-lg-4 col-md-6 text-center">-->
+                <!--                    <div class="single-product-item">-->
+                <!--                        <div class="product-image">-->
+                <!--                            <a href="single-product.html"><img src="assets/img/products/product-img-1.jpg" alt=""></a>-->
+                <!--                        </div>-->
+                <!--                        <h3>Strawberry</h3>-->
+                <!--                        <p class="product-price"><span>Per Kg</span> 85$ </p>-->
+                <!--                        <a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>-->
+                <!--                    </div>-->
+                <!--                </div>-->
+                <!--                <div class="col-lg-4 col-md-6 text-center">-->
+                <!--                    <div class="single-product-item">-->
+                <!--                        <div class="product-image">-->
+                <!--                            <a href="single-product.html"><img src="assets/img/products/product-img-2.jpg" alt=""></a>-->
+                <!--                        </div>-->
+                <!--                        <h3>Berry</h3>-->
+                <!--                        <p class="product-price"><span>Per Kg</span> 70$ </p>-->
+                <!--                        <a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>-->
+                <!--                    </div>-->
+                <!--                </div>-->
                 <?php
-                if(!empty($data['productSame'])):
-                    foreach ($data['productSame'] as $productSame):
+                if (!empty($data['productSame'])) :
+                    foreach ($data['productSame'] as $productSame) :
                 ?>
-                <div class="col-lg-4 col-md-6 offset-lg-0 offset-md-3 text-center">
-                    <div class="single-product-item">
-                        <div class="product-image">
-                            <a href="<?= ROOT_URL . 'ClientProductController/detail/' . $productSame['related_id'] ?>"><img src="<?= ROOT_URL . $productSame['path_image'] ?>" alt="<?= $productSame['name'] ?>"></a>
+                        <div class="col-lg-4 col-md-6 offset-lg-0 offset-md-3 text-center">
+                            <div class="single-product-item">
+                                <div class="product-image">
+                                    <a href="<?= ROOT_URL . 'ClientProductController/detail/' . $productSame['related_id'] ?>"><img src="<?= ROOT_URL . $productSame['path_image'] ?>" alt="<?= $productSame['name'] ?>"></a>
+                                </div>
+                                <h3><?= $productSame['name'] ?></h3>
+                                <p class="product-price"><span><?= $productSame['title'] ?></span><?= number_format($productSame['price']) ?> </p>
+                                <div class="d-flex justify-content-center align-items-center">
+                                    <a href="<?= ROOT_URL . 'CartController/addToCart/' . $productSame['related_id'] ?>" class="boxed-btn me-5 mr-3"><i class="fas fa-shopping-cart"></i>
+                                        Thêm</a>
+                                    <a href="<?= ROOT_URL . 'ClientProductController/detail/' . $productSame['related_id'] ?>" class="boxed-btn "><i class=" fas fa-eye"></i> Chi
+                                        tiết</a>
+                                </div>
+                            </div>
                         </div>
-                        <h3><?= $productSame['name'] ?></h3>
-                        <p class="product-price"><span><?= $productSame['title'] ?></span><?= number_format($productSame['price']) ?> </p>
-                        <div class="d-flex justify-content-center align-items-center">
-                            <a href="single-product.php" class="boxed-btn me-5 mr-3"><i class="fas fa-shopping-cart"></i>
-                                Thêm</a>
-                            <a href="<?= ROOT_URL . 'ClientProductController/detail/' . $productSame['related_id'] ?>" class="boxed-btn "><i class=" fas fa-eye"></i> Chi
-                                tiết</a>
-                        </div>
-                    </div>
-                </div>
-                        <?php
+                <?php
                     endforeach;
-                    endif;
-                        ?>
+                endif;
+                ?>
             </div>
         </div>
     </div>
     <!-- end more products -->
 <?php
-}else {
+} else {
 ?>
     <!-- breadcrumb-section -->
     <div class="breadcrumb-section breadcrumb-bg">

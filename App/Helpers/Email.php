@@ -12,9 +12,12 @@ use App\App\Core\Session;
 class Email
 {
     private $mail;
-    function __construct($email, $code, $content, $url)
+    function __construct()
     {
         $this->mail = new PHPMailer(true);
+    }
+    public function MailOTP($email, $code, $content, $url): void
+    {
         $subject = "Email Verification Code";
         $message = "Your verification code is $code";
         $sender = "xuanptpc04031@fpt.edu.vn";
@@ -41,6 +44,31 @@ class Email
             exit();
         } else {
             Session::setError('sendMail', 'Không thể gửi mã');
+        }
+    }
+    public function MailCheckout($email,$content, $url){
+        $subject = "Email CheckOut Order";
+        $message = "$content";
+        $sender = "xuanptpc04031@fpt.edu.vn";
+        if ($this->mail) {
+            $this->mail->IsSMTP(); // telling the class to use SMTP
+            $this->mail->SMTPAuth = true; // enable SMTP authentication
+            $this->mail->SMTPSecure = "ssl"; // sets the prefix to the servier
+            $this->mail->Host = "smtp.gmail.com"; // sets GMAIL as the SMTP server
+            $this->mail->Port = 465; // set the SMTP port for the GMAIL server
+            $this->mail->Username = "xuanptpc04031@fpt.edu.vn"; // GMAIL username
+            $this->mail->Password = "Shuan0310."; // GMAIL password
+            $this->mail->AddAddress($email);
+            $this->mail->SetFrom($sender, 'Admin: FFruit');
+            $this->mail->Subject = $subject;
+            $this->mail->Body = $message;
+            $this->mail->Send();
+            if ($url === "checkouted") {
+                header('location:' . ROOT_URL . 'HomeController/homePage');
+            }
+//            exit();
+        } else {
+            Session::setError('sendMail', 'Không thể gửi!');
         }
     }
 }

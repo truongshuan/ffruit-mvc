@@ -1,3 +1,8 @@
+<?php
+
+use App\App\Core\Session;
+?>
+
 <!-- breadcrumb-section -->
 <div class="breadcrumb-section breadcrumb-bg">
     <div class="container">
@@ -17,10 +22,13 @@
 <div class="cart-section mt-150 mb-150">
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 col-md-12">
-                <div class="cart-table-wrap">
-                    <table class="cart-table">
-                        <thead class="cart-table-head">
+            <?php
+            if(!empty($data)):
+                ?>
+                <div class="col-lg-8 col-md-12">
+                    <div class="cart-table-wrap">
+                        <table class="cart-table">
+                            <thead class="cart-table-head">
                             <tr class="table-head-row">
                                 <th class="product-remove"></th>
                                 <th class="product-image">Product Image</th>
@@ -29,76 +37,73 @@
                                 <th class="product-quantity">Quantity</th>
                                 <th class="product-total">Total</th>
                             </tr>
-                        </thead>
-                        <tbody>
-                            <tr class="table-body-row">
-                                <td class="product-remove"><a href="#"><i class="far fa-window-close"></i></a></td>
-                                <td class="product-image"><img src="assets/img/products/product-img-1.jpg" alt="">
-                                </td>
-                                <td class="product-name">Strawberry</td>
-                                <td class="product-price">$85</td>
-                                <td class="product-quantity"><input type="number" placeholder="0"></td>
-                                <td class="product-total">1</td>
-                            </tr>
-                            <tr class="table-body-row">
-                                <td class="product-remove"><a href="#"><i class="far fa-window-close"></i></a></td>
-                                <td class="product-image"><img src="assets/img/products/product-img-2.jpg" alt="">
-                                </td>
-                                <td class="product-name">Berry</td>
-                                <td class="product-price">$70</td>
-                                <td class="product-quantity"><input type="number" placeholder="0"></td>
-                                <td class="product-total">1</td>
-                            </tr>
-                            <tr class="table-body-row">
-                                <td class="product-remove"><a href="#"><i class="far fa-window-close"></i></a></td>
-                                <td class="product-image"><img src="assets/img/products/product-img-3.jpg" alt="">
-                                </td>
-                                <td class="product-name">Lemon</td>
-                                <td class="product-price">$35</td>
-                                <td class="product-quantity"><input type="number" placeholder="0"></td>
-                                <td class="product-total">1</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                            <?php
+                                foreach ($data as $item):
+                                    ?>
+                                    <tr class="table-body-row">
+                                        <td class="product-remove"><a href="<?= ROOT_URL . 'CartController/deleteCart/'.$item['id'] ?>"><i class="far fa-window-close"></i></a></td>
+                                        <td class="product-image"><img src="<?= ROOT_URL . $item['path_image'] ?>" alt="<?= $item['name'] ?>">
+                                        </td>
+                                        <td class="product-name"><?= $item['name'] ?></td>
+                                        <td class="product-price"><?= number_format($item['price']) ?> VND</td>
+                                        <td class="product-quantity d-flex justify-content-center align-items-center">
+                                            <form action="<?= ROOT_URL . 'CartController/updateCart/'.$item['id'] ?>" method="post">
+                                                <input type="number" name="quality" value="<?= $item['quality'] ?>" placeholder="0">
+                                            </form>
+                                        </td>
+                                        <td class="product-total"><?= number_format($item['quality'] * $item['price']) ?> VND</td>
+                                    </tr>
+                                <?php
+                                endforeach;
+                            ?>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-            </div>
-
-            <div class="col-lg-4">
-                <div class="total-section">
-                    <table class="total-table">
-                        <thead class="total-table-head">
+                <div class="col-lg-4">
+                    <div class="total-section">
+                        <table class="total-table">
+                            <thead class="total-table-head">
                             <tr class="table-total-row">
-                                <th>Total</th>
-                                <th>Price</th>
+                                <th>Tổng tiền</th>
+                                <th>Giá</th>
                             </tr>
-                        </thead>
-                        <tbody>
+                            </thead>
+                            <tbody>
                             <tr class="total-data">
                                 <td><strong>Subtotal: </strong></td>
-                                <td>$500</td>
+                                <td><?= number_format(Session::totalCart($data)) ?></td>
                             </tr>
                             <tr class="total-data">
                                 <td><strong>Total: </strong></td>
-                                <td>$545</td>
+                                <td><?= number_format(Session::totalCart($data)) ?></td>
                             </tr>
-                        </tbody>
-                    </table>
-                    <div class="cart-buttons">
-                        <a href="cart.php" class="boxed-btn">Cập nhật</a>
-                        <a href="checkout.php" class="boxed-btn black">Đặt hàng</a>
+                            </tbody>
+                        </table>
+                        <div class="cart-buttons">
+                            <a href="<?= ROOT_URL . "CheckoutController/checkOut" ?>" class="boxed-btn black">Đặt hàng</a>
+                        </div>
                     </div>
-                </div>
 
-                <div class="coupon-section">
-                    <h3>Áp dụng mã khuyến mãi</h3>
-                    <div class="coupon-form-wrap">
-                        <form action="index.php">
-                            <p><input type="text" placeholder="Coupon"></p>
-                            <p><input type="submit" value="Áp dụng"></p>
-                        </form>
+                    <div class="coupon-section">
+                        <h3>Áp dụng mã khuyến mãi</h3>
+                        <div class="coupon-form-wrap">
+                            <form action="index.php">
+                                <p><input type="text" placeholder="Coupon"></p>
+                                <p><input type="submit" value="Áp dụng"></p>
+                            </form>
+                        </div>
                     </div>
                 </div>
-            </div>
+            <?php
+            else :
+                ?>
+                <h1 class="text-center">Giỏ hàng trống !</h1>
+            <?php
+            endif;
+            ?>
         </div>
     </div>
 </div>

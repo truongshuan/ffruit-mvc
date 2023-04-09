@@ -24,34 +24,22 @@ use App\App\Core\Session;
                     <div class="text-center my-5">
                         <img src="<?= ROOT_URL ?>public/assets/client/img/favicon-v.png" alt="logo" width="100">
                     </div>
-                    <div class="card shadow-lg">
+                    <div class="card shawdog-lg">
                         <div class="card-body p-5">
                             <h1 class="fs-4 card-title fw-bold mb-4 text-center">Quên mật khẩu</h1>
-                            <?php if (isset($_SESSION['error']['error_forgot'])) :  ?>
-                                <div class="alert alert-danger text-center">
-                                    <?= Session::getError('error_forgot') ?>
-                                </div>
-                            <?php endif; ?>
-                            <form action="<?= ROOT_URL ?>ForgotController/action" method="POST" class="needs-validation">
+                            <form action="<?= ROOT_URL ?>ForgotController/action" method="post" class="needs-validation">
                                 <div class="mb-3">
-                                    <label class="mb-2 text-muted" for="email">E-Mail</label>
-                                    <input id="email" type="text" class="form-control" name="email">
-                                    <small class="text-danger">
-                                        <?= Session::getError('email') ?>
-                                    </small>
-                                </div>
-                                <div class="d-flex align-items-center justify-content-center">
-                                    <button type="submit" name="forgot" class="btn btn-primary mt-3">
-                                        Lấy mã
-                                    </button>
+                                    <label class="mb-2 text-muted" for="method">Chọn phương thức khôi phục mật khẩu</label>
+                                    <select class="form-select" name="method" aria-label="Default select example"required>
+                                        <option value="null" disabled>Phương thức</option>
+                                        <option value="mail">Send Mail</option>
+                                        <option value="sms">Send SMS</option>
+                                    </select>
+                                    <div class="mt-3 w-full">
+                                        <button class="btn btn-primary" type="submit" name="forgot">Xác nhận</button>
+                                    </div>
                                 </div>
                             </form>
-                        </div>
-                        <div class="card-footer py-3 border-0">
-                            <div class="text-center">
-                                Bạn đã nhớ ra? <a href="<?= ROOT_URL ?>UserController/login" class="text-primary text-decoration-none">Đăng
-                                    nhập</a>
-                            </div>
                         </div>
                     </div>
                 </div>

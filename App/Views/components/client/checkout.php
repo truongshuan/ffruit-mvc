@@ -1,4 +1,8 @@
 <!-- breadcrumb-section -->
+<?php
+
+use App\App\Core\Session;
+?>
 <div class="breadcrumb-section breadcrumb-bg">
     <div class="container">
         <div class="row">
@@ -28,57 +32,74 @@
                                     </button>
                                 </h5>
                             </div>
-
                             <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
                                 <div class="card-body">
                                     <div class="billing-address-form">
-                                        <form action="index.html">
-                                            <p><input type="text" placeholder="Name"></p>
-                                            <p><input type="email" placeholder="Email"></p>
-                                            <p><input type="text" placeholder="Address"></p>
-                                            <p><input type="tel" placeholder="Phone"></p>
-                                            <p><textarea name="bill" id="bill" cols="30" rows="10" placeholder="Say Something"></textarea></p>
+                                        <form action="<?= ROOT_URL . 'CheckoutController/checkoutAction' ?>" method="post">
+<!--                                            <p><input type="text" placeholder="Name"></p>-->
+                                            <p><input type="email" required name="email" placeholder="Email"></p>
+                                            <p><input type="text"  required name="address" placeholder="Address"></p>
+                                            <p><input type="tel"  required name="phone" placeholder="Phone"></p>
+                                            <p><textarea name="note" required id="bill" cols="30" rows="10" placeholder="Say Something"></textarea></p>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="cod" checked>
+                                                <label class="form-check-label" for="exampleRadios1">
+                                                    Ship COD
+                                                </label>
+                                            </div>
+                                            <div class="form-check mt-2 mb-3">
+                                                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="paypal">
+                                                <label class="form-check-label" for="exampleRadios2">
+                                                    <img src="https://upload.wikimedia.org/wikipedia/commons/3/39/PayPal_logo.svg" alt="paypal" width="80px">
+                                                </label>
+                                            </div>
+                                            <div class="form-check mt-2 mb-2">
+                                                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="vnpay">
+                                                <label class="form-check-label" for="exampleRadios3">
+                                                    <img src="https://cdn.haitrieu.com/wp-content/uploads/2022/10/Logo-VNPAY-QR-1.png" alt="vnpay" width="80px">
+                                                </label>
+                                            </div>
+                                            <button class="btn btn-warning" name="checkout">Đặt hàng</button>
                                         </form>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="card single-accordion">
-                            <div class="card-header" id="headingTwo">
-                                <h5 class="mb-0">
-                                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                        Thông tin địa chỉ
-                                    </button>
-                                </h5>
-                            </div>
-                            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
-                                <div class="card-body">
-                                    <div class="shipping-address-form">
-                                        <p>Your shipping address form is here.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card single-accordion">
-                            <div class="card-header" id="headingThree">
-                                <h5 class="mb-0">
-                                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                        Card Details
-                                    </button>
-                                </h5>
-                            </div>
-                            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
-                                <div class="card-body">
-                                    <div class="card-details">
-                                        <p>Chi tiết đơn hàng</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+<!--                        <div class="card single-accordion">-->
+<!--                            <div class="card-header" id="headingTwo">-->
+<!--                                <h5 class="mb-0">-->
+<!--                                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">-->
+<!--                                        Thông tin địa chỉ-->
+<!--                                    </button>-->
+<!--                                </h5>-->
+<!--                            </div>-->
+<!--                            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">-->
+<!--                                <div class="card-body">-->
+<!--                                    <div class="shipping-address-form">-->
+<!--                                        <p>Your shipping address form is here.</p>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div class="card single-accordion">-->
+<!--                            <div class="card-header" id="headingThree">-->
+<!--                                <h5 class="mb-0">-->
+<!--                                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">-->
+<!--                                        Card Details-->
+<!--                                    </button>-->
+<!--                                </h5>-->
+<!--                            </div>-->
+<!--                            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">-->
+<!--                                <div class="card-body">-->
+<!--                                    <div class="card-details">-->
+<!--                                        <p>Chi tiết đơn hàng</p>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
                     </div>
                 </div>
             </div>
-
             <div class="col-lg-4">
                 <div class="order-details-wrap">
                     <table class="order-details">
@@ -93,35 +114,29 @@
                                 <td>Product</td>
                                 <td>Total</td>
                             </tr>
+                            <?php
+                            foreach ($data as $item):
+                            ?>
                             <tr>
-                                <td>Strawberry</td>
-                                <td>$85.00</td>
+                                <td><?= $item['name'] ?></td>
+                                <td><?= number_format($item['quality'] * $item['price']) ?></td>
                             </tr>
-                            <tr>
-                                <td>Berry</td>
-                                <td>$70.00</td>
-                            </tr>
-                            <tr>
-                                <td>Lemon</td>
-                                <td>$35.00</td>
-                            </tr>
+                            <?php
+                            endforeach;
+                            ?>
                         </tbody>
                         <tbody class="checkout-details">
                             <tr>
                                 <td>Subtotal</td>
-                                <td>$190</td>
-                            </tr>
-                            <tr>
-                                <td>Shipping</td>
-                                <td>$50</td>
+                                <td><?= number_format(Session::totalCart($data)) ?></td>
                             </tr>
                             <tr>
                                 <td>Total</td>
-                                <td>$240</td>
+                                <td><?= number_format(Session::totalCart($data)) ?></td>
                             </tr>
                         </tbody>
                     </table>
-                    <a href="#" class="boxed-btn">Đặt hàng</a>
+<!--                    <a href="#" class="boxed-btn">Đặt hàng</a>-->
                 </div>
             </div>
         </div>

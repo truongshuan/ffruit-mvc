@@ -40,13 +40,14 @@ class UserController extends BaseController
                 $email = $_POST['email'];
                 $password = $_POST['password'];
                 $check = $this->_user->checkLogin($email);
-                if (isset($check[0]['email']) == $email) {
-                    if (password_verify($password, $check[0]['password'])) {
-                        if ($check[0]['status'] == 'verified') {
-                            Session::set('id_user', $check[0]['id']);
-                            Session::set('username_user', $check[0]['username']);
-                            Session::set('email_user', $check[0]['email']);
-                            Session::set('password_user', $check[0]['password']);
+                if (isset($check['email']) == $email) {
+                    if (password_verify($password, $check['password'])) {
+                        if ($check['status'] == 'verified') {
+                            Session::set('login_user', true);
+                            Session::set('id_user', $check['id']);
+                            Session::set('username_user', $check['username']);
+                            Session::set('email_user', $check['email']);
+                            Session::set('password_user', $check['password']);
                             if (isset($_POST['remember'])) {
                                 setcookie('emailUser', $email, time() + 60 * 60);
                                 setcookie('passwordUser', $password, time() + 60 * 60);
@@ -89,6 +90,7 @@ class UserController extends BaseController
                     $code = 0;
                     $status = 'verified';
                     $this->_user->updateUser($code, $status, $email);
+                    Session::set('login_user', true);
                     Session::set('id_user', $check[0]['id']);
                     Session::set('username_user', $check[0]['username']);
                     Session::set('email_user', $check[0]['email']);
@@ -106,6 +108,7 @@ class UserController extends BaseController
     }
     public function logout()
     {
+        unset($_SESSION['login_user']);
         unset($_SESSION['id_user']);
         unset($_SESSION['username_user']);
         unset($_SESSION['email_user']);
