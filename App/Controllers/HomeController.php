@@ -36,20 +36,21 @@ class HomeController extends BaseController
         ];
         $this->_renderBase->renderHeader();
         $this->load->render('layouts/client/slider');
-        $this->load->render('client/index',$data);
+        $this->load->render('client/index', $data);
         $this->_renderBase->renderFooter();
     }
-    function about(){
+    function about()
+    {
         $data = [];
         $this->_renderBase->renderHeader();
-        $this->load->render('client/about-us',$data);
+        $this->load->render('client/about-us', $data);
         $this->_renderBase->renderFooter();
-
     }
-    function contact(){
+    function contact()
+    {
         $data = [];
         $this->_renderBase->renderHeader();
-        $this->load->render('client/contact',$data);
+        $this->load->render('client/contact', $data);
         $this->_renderBase->renderFooter();
     }
     /**

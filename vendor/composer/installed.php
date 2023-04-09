@@ -3,7 +3,7 @@
         'name' => 'asmin/xuanptpc04031_web17301_asm',
         'pretty_version' => 'dev-master',
         'version' => 'dev-master',
-        'reference' => '09f86c05fdaa5606ce531ba9ea6685a0c078d740',
+        'reference' => '76c5f9ad011e703c8ac82e6f3e7905dd10ab716d',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -13,7 +13,7 @@
         'asmin/xuanptpc04031_web17301_asm' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
-            'reference' => '09f86c05fdaa5606ce531ba9ea6685a0c078d740',
+            'reference' => '76c5f9ad011e703c8ac82e6f3e7905dd10ab716d',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
