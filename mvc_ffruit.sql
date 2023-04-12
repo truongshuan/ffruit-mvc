@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Apr 07, 2023 at 11:59 PM
+-- Generation Time: Apr 12, 2023 at 03:15 PM
 -- Server version: 5.7.24
 -- PHP Version: 8.1.10
 
@@ -59,6 +59,13 @@ CREATE TABLE `categories` (
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 
+--
+-- Dumping data for table `categories`
+--
+
+INSERT INTO `categories` (`id`, `title`, `description`, `created_at`, `updated_at`) VALUES
+(1, '1', '<p>1</p>', '2023-04-09 04:37:10', '2023-04-09 04:37:10');
+
 -- --------------------------------------------------------
 
 --
@@ -78,6 +85,24 @@ CREATE TABLE `orders` (
   `customer_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 
+--
+-- Dumping data for table `orders`
+--
+
+INSERT INTO `orders` (`id`, `phone`, `email`, `address`, `note`, `status`, `payment_method`, `created_at`, `updated_at`, `customer_id`) VALUES
+(1, '0961518977', 'khanhnam03102002@gmail.com', '125/2 Hòa Hưng', '123', 0, 'cod', '2023-04-09 04:37:37', '2023-04-09 04:37:37', 1),
+(2, '0961518977', 'khanhnam03102002@gmail.com', '125/2 Hòa Hưng', '123', 0, 'cod', '2023-04-09 04:38:31', '2023-04-09 04:38:31', 1),
+(3, '0961518977', 'khanhnam03102002@gmail.com', '125/2 Hòa Hưng', '123', 0, 'cod', '2023-04-09 04:40:58', '2023-04-09 04:40:58', 1),
+(4, '0961518977', 'khanhnam03102002@gmail.com', '125/2 Hòa Hưng', '123', 0, 'cod', '2023-04-09 04:43:06', '2023-04-09 04:43:06', 1),
+(5, '0961518977', 'khanhnam03102002@gmail.com', '125/2 Hòa Hưng', '123', 0, 'cod', '2023-04-09 04:45:34', '2023-04-09 04:45:34', 1),
+(6, '0961518977', 'khanhnam03102002@gmail.com', '125/2 Hòa Hưng', '123', 0, 'cod', '2023-04-09 04:47:05', '2023-04-09 04:47:05', 1),
+(7, '0961518977', 'khanhnam03102002@gmail.com', '125/2 Hòa Hưng', '123', 0, 'cod', '2023-04-09 04:47:38', '2023-04-09 04:47:38', 1),
+(8, '0961518977', 'khanhnam03102002@gmail.com', '125/2 Hòa Hưng', '123', 0, 'cod', '2023-04-09 04:48:43', '2023-04-09 04:48:43', 1),
+(9, '0961518977', 'khanhnam03102002@gmail.com', '125/2 Hòa Hưng', '123', 0, 'cod', '2023-04-09 04:50:39', '2023-04-09 04:50:39', 1),
+(10, '0961518977', 'khanhnam03102002@gmail.com', '125/2 Hòa Hưng', '123', 0, 'cod', '2023-04-09 04:50:58', '2023-04-09 04:50:58', 1),
+(11, '0961518977', 'khanhnam03102002@gmail.com', '125/2 Hòa Hưng', '123', 0, 'cod', '2023-04-09 06:49:49', '2023-04-09 06:49:49', 1),
+(12, '0961518977', 'khanhnam03102002@gmail.com', '125/2 Hòa Hưng', '123', 0, 'cod', '2023-04-09 06:50:38', '2023-04-09 06:50:38', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -93,6 +118,18 @@ CREATE TABLE `orders_detail` (
   `amount` int(11) NOT NULL,
   `total` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+
+--
+-- Dumping data for table `orders_detail`
+--
+
+INSERT INTO `orders_detail` (`order_id`, `product_id`, `name`, `price`, `path_image`, `amount`, `total`) VALUES
+(1, 1, '1', 2500, 'public/uploads/products/2023_04/1681015038_643240fed74d0.jpg', 1, 2500),
+(4, 1, '1', 2500, 'public/uploads/products/2023_04/1681015038_643240fed74d0.jpg', 1, 2500),
+(7, 1, '1', 2500, 'public/uploads/products/2023_04/1681015038_643240fed74d0.jpg', 1, 2500),
+(9, 1, '1', 2500, 'public/uploads/products/2023_04/1681015038_643240fed74d0.jpg', 2, 5000),
+(11, 1, '1', 2500, 'public/uploads/products/2023_04/1681015038_643240fed74d0.jpg', 1, 2500),
+(12, 1, '1', 2500, 'public/uploads/products/2023_04/1681015038_643240fed74d0.jpg', 2, 5000);
 
 -- --------------------------------------------------------
 
@@ -128,6 +165,13 @@ CREATE TABLE `products` (
   `id_category` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 
+--
+-- Dumping data for table `products`
+--
+
+INSERT INTO `products` (`id`, `name`, `price`, `description`, `path_image`, `created_at`, `updated_at`, `id_category`) VALUES
+(1, '1', 2500, '<p>123</p>', 'public/uploads/products/2023_04/1681015038_643240fed74d0.jpg', '2023-04-09 04:37:18', '2023-04-09 04:37:18', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -159,6 +203,13 @@ CREATE TABLE `users` (
   `code` text COLLATE utf8mb4_unicode_520_ci NOT NULL,
   `status` varchar(50) COLLATE utf8mb4_unicode_520_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `username`, `email`, `fullname`, `password`, `created_at`, `address`, `phone`, `code`, `status`) VALUES
+(1, '123', 'khanhnam03102002@gmail.com', '123', '$2y$10$EwxYoLIqHoENoHi.rVKx2uHNUnGXPlLRvAIfSCgoFhVlr4LLnveAO', '2023-04-09 04:29:53', NULL, '961518977', '0', 'verified');
 
 --
 -- Indexes for dumped tables
@@ -224,37 +275,37 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `topics`
 --
 ALTER TABLE `topics`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Constraints for dumped tables
