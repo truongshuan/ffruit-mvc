@@ -8,12 +8,12 @@ use Twilio\Rest\Client;
 
 class SMS
 {
-    private static $_hash = '498024ebf8fd2b108a43d9af55abe9a4';
+    // private static $_hash = '498024ebf8fd2b108a43d9af55abe9a4';
 
     public static function sendSMS($phone, $otp): void
     {
-        $sid = "ACdaf39a8ac3c57194cf76ef9c87a0672e"; // Your Account SID from www.twilio.com/console
-        $token = md5(SMS::$_hash); // Your Auth Token from www.twilio.com/console
+        $sid = SMS_SID; // Your Account SID from www.twilio.com/console
+        $token = SMS_API_KEY; // Your Auth Token from www.twilio.com/console
         $client = new Client(
             $sid,
             $token
